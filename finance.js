@@ -65,6 +65,7 @@ SateraitoWF.hideRouteSelection(form);
 
     description2.addEventListener('change', function () {
         console.log("changed");
+        console.log("add tagg");
         qty2.class += "mandatory";
         qty2.sateraito_class += "mandatory";
         unit_price2.class += "mandatory";
