@@ -1,6 +1,7 @@
 
 // >>== FORM INPUT CONTROL ==<<
 
+function formvalidator(){
     var description2 = document.getElementsByName('description2');
     var qty2 = document.getElementsByName('description2');
     var unit_price2 = document.getElementsByName('description2');
@@ -16,3 +17,4 @@
         amount2.class += "mandatory";
         amount2.sateraito_class += "mandatory";
     });
+}
