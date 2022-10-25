@@ -183,7 +183,7 @@ function calculateTotalAmount(){
         var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
         var year = SateraitoWF.getFormValue(form, 'dummy_date');
         year = year.slice(2,-6);
-        var invoicenum = SateraitoWF.getFormValue(form, 'invoice_number',);
+        var invoicenum = SateraitoWF.getFormValue(form, 'invoice_number');
 
         SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoicenum+'OSL');
     }
