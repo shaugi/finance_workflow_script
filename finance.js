@@ -87,44 +87,91 @@ function calculateTotalAmount(){
     switch(dept) {
         case 'BS-Language (Translation-Interpreter)':
             SateraitoWF.enableFormElement(form, 'invoice_code');
-            $(form).find('.invoice_code_es').css('display', 'none');
-            $(form).find('.invoice_code_gs').css('display', 'none');
-            $(form).find('.invoice_code_ts').css('display', 'none');
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
+            $(form).find('.invoice_code_ts').remove();
             console.log('BS-Language (Translation-Interpreter)');
         break;
         case 'Employment Strategy':
             SateraitoWF.enableFormElement(form, 'invoice_code');
-            $(form).find('.invoice_code_bs').css('display', 'none');
-            $(form).find('.invoice_code_gs').css('display', 'none');
-            $(form).find('.invoice_code_ts').css('display', 'none');
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_gs').remove();
+            $(form).find('.invoice_code_ts').remove();
             console.log('Employment Strategy');
         break;
         case 'GS-Education':
             SateraitoWF.enableFormElement(form, 'invoice_code');
-            $(form).find('.invoice_code_bs').css('display', 'none');
-            $(form).find('.invoice_code_es').css('display', 'none');
-            $(form).find('.invoice_code_ts').css('display', 'none');
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_ts').remove();
             console.log('GS-Education');
         break;
         case 'Talent Strategy':
             SateraitoWF.enableFormElement(form, 'invoice_code');
-            $(form).find('.invoice_code_bs').css('display', 'none');
-            $(form).find('.invoice_code_es').css('display', 'none');
-            $(form).find('.invoice_code_gs').css('display', 'none');
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             console.log('Talent Strategy');
         break;
+        case 'BS-CEBL':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'BS/CEBL/');
+            console.log('BS-CEBL');
+        break;
+        case 'BS-HRC':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'HRC');
+            console.log('BS-HRC');
+        break;
+        case 'BS-HRC-PAY':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'PAY');
+            console.log('BS-HRC-PAY');
+        break;
+        case 'BS-HRC-PSY':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'PSY');
+            console.log('BS-HRC-PSY');
+        break;
+        case 'BS-HRC-TRN':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'TRN');
+            console.log('BS-HRC-TRN');
+        break;
+        case 'BS-Visa':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'BS/VISA');
+            console.log('BS-Visa');
+        break;
+        case 'GS-Ginojishuusei':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'GJ');
+            console.log('GS-Ginojishuusei');
+        break;
+        case 'GS-Kaigo':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'KG');
+            console.log('GS-Kaigo');
+        break;
+        case 'Language Course':
+            SateraitoWF.disableFormElement(form, 'invoice_code');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'LC/IN');
+            console.log('Language Course');
+        break;
         default:
-            SateraitoWF.enableFormElement(form, 'invoice_code');
-            $(form).find('.invoice_code_bs').css('display', 'none');
-            $(form).find('.invoice_code_es').css('display', 'none');
-            $(form).find('.invoice_code_gs').css('display', 'none');
-            $(form).find('.invoice_code_ts').css('display', 'none');
-            console.log('disable all');
+            console.log('divisi kosong');
     }
 
     $(form).find(':input[name=invoice_code]').change(function(){
-
         var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
         SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
-
     });
+
+
+    //GENERATE CODE
+    var detailCode =  invoice_code;
+    var year = SateraitoWF.getFormValue(form, 'dummy_date');
+    year = year.slice(2,-6);
+    var invoicenum = SateraitoWF.getFormValue(form, 'invoice_number',);
+
+    SateraitoWF.setFormValue(form, 'generated_code', detailCode+year+invoicenum+'OSL');
