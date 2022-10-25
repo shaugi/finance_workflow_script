@@ -118,7 +118,8 @@ SateraitoWF.hideRouteSelection(form);
     var doc_status = SateraitoWF.getDocStatus(form);
     var processInfos = SateraitoWF.getApproveProcessInfo(form);
 
-    console.log('processInfos : ' + processInfos);
+    console.log('processInfos : ' + processInfos[1]);
+    console.log('processInfos status : ' + processInfos[1].status);
     console.log('doc_status : '+ doc_status);
 
     var statusProcess = processInfos[1].status;
