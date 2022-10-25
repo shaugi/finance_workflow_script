@@ -130,7 +130,7 @@ SateraitoWF.hideRouteSelection(form);
         $(form).find('input[name=payment_due_date]').css('display','block');
         $(form).find('input[name=payment_due_date]').addClass( 'mandatory' );
     }else{
-        $(form).find('input[name=payment_due_date]').hide();
+        $(form).find('.hide_if_not_final_approver').hide();
     }
 
     //     if(doc_status == 'final_approved'){
