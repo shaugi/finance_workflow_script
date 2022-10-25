@@ -116,46 +116,55 @@ function calculateTotalAmount(){
         case 'BS-CEBL':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'BS/CEBL/');
+            generate_code();
             console.log('BS-CEBL');
         break;
         case 'BS-HRC':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'HRC');
+            generate_code();
             console.log('BS-HRC');
         break;
         case 'BS-HRC-PAY':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'PAY');
+            generate_code();
             console.log('BS-HRC-PAY');
         break;
         case 'BS-HRC-PSY':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'PSY');
+            generate_code();
             console.log('BS-HRC-PSY');
         break;
         case 'BS-HRC-TRN':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'TRN');
+            generate_code();
             console.log('BS-HRC-TRN');
         break;
         case 'BS-Visa':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'BS/VISA');
+            generate_code();
             console.log('BS-Visa');
         break;
         case 'GS-Ginojishuusei':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'GJ');
+            generate_code();
             console.log('GS-Ginojishuusei');
         break;
         case 'GS-Kaigo':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'KG');
+            generate_code();
             console.log('GS-Kaigo');
         break;
         case 'Language Course':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'LC/IN');
+            generate_code();
             console.log('Language Course');
         break;
         default:
@@ -165,13 +174,17 @@ function calculateTotalAmount(){
     $(form).find(':input[name=invoice_code]').change(function(){
         var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
         SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
+        generate_code();
     });
 
 
     //GENERATE CODE
-    var detailCode =  invoice_code;
-    var year = SateraitoWF.getFormValue(form, 'dummy_date');
-    year = year.slice(2,-6);
-    var invoicenum = SateraitoWF.getFormValue(form, 'invoice_number',);
+    function generate_code(){
+        var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
+        var year = SateraitoWF.getFormValue(form, 'dummy_date');
+        year = year.slice(2,-6);
+        var invoicenum = SateraitoWF.getFormValue(form, 'invoice_number',);
 
-    SateraitoWF.setFormValue(form, 'generated_code', detailCode+year+invoicenum+'OSL');
+        SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoicenum+'OSL');
+    }
+
