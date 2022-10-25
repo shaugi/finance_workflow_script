@@ -1,7 +1,8 @@
+let form = SateraitoWF.getForm(this);
 
+console.log(" SateraitoWF.getForm(this) : "+ form);
 //==========FUNCTION=============//
 function service2validator(){
-    var form = SateraitoWF.getForm(document.forms[0]);
     var description2 = SateraitoWF.getFormValue(form, 'description2');
     var qty2 = document.getElementsByName('qty2');
     var unit_price2 = document.getElementsByName('unit_price2');
@@ -23,7 +24,6 @@ function service2validator(){
 
 function calculateTotalAmount(){
 
-    var form = SateraitoWF.getForm(document.forms[0]);
     var qty1 = SateraitoWF.getFormValue(form, 'quantity1');
     var qty2 = SateraitoWF.getFormValue(form, 'quantity2');
     var qty3 = SateraitoWF.getFormValue(form, 'quantity3');
@@ -57,7 +57,6 @@ function calculateTotalAmount(){
 
 //==========DOCUMENT CONTROL=============//
 
-    var form = SateraitoWF.getForm(document.forms[0]);
     SateraitoWF.hideRouteSelection(form);
 
 
