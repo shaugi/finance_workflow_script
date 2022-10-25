@@ -55,10 +55,19 @@ function calculateTotalAmount(){
 }
 
 
+//GENERATE CODE & APPLICATION NUMBER
+function generate_code(invoice_code){
+    var year = SateraitoWF.getFormValue(form, 'dummy_date');
+    year = year.slice(2,-6);
+    SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoice_numer+'OSL');
+
+    var generate_code_final = SateraitoWF.getFormValue(form, 'generated_code');
+    SateraitoWF.setFormValue(form, 'No', 'OSSI/FINANCE/'+generate_code_final)
+}
+
 //==========DOCUMENT CONTROL=============//
 
     SateraitoWF.hideRouteSelection(form);
-
 
     //GET INVOICE NUMBER
     var results =  SateraitoWF.getMasterData('finance_invoice_number') ;
@@ -156,7 +165,7 @@ function calculateTotalAmount(){
         break;
         case 'BS-HRC-TRN':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            SateraitoWF.setFormValue(form, 'code_invoice', 'TR');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'TRN');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
@@ -217,12 +226,3 @@ function calculateTotalAmount(){
         SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
         generate_code(invoice_code);
     });
-
-
-    //GENERATE CODE
-    function generate_code(invoice_code){
-        var year = SateraitoWF.getFormValue(form, 'dummy_date');
-        year = year.slice(2,-6);
-        SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoice_numer+'OSL');
-    }
-
