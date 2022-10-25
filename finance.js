@@ -1,4 +1,4 @@
-let form = SateraitoWF.getForm(this);
+let form = SateraitoWF.getForm(document.getElementsByName('workflow_doc_load_handler'));
 
 console.log(" SateraitoWF.getForm(this) : "+ form);
 //==========FUNCTION=============//
