@@ -116,10 +116,11 @@ SateraitoWF.hideRouteSelection(form);
 
     // DOCUMENT STATUS CONTROL
     var doc_status = SateraitoWF.getDocStatus(form);
-    var processInfos = SateraitoWF.getApproveProcessInfo(form);
+    var processInfos = SatelliteWF.getApproveProcessInfo(form);
 
-    console.log('processInfos : ' + processInfos[1].status);
+    console.log('processInfos : ' + processInfos);
     console.log('doc_status : '+ doc_status);
+
     var statusProcess = processInfos[1].status;
     if(statusProcess = 'in_process'){
         $(form).find('input[name=invoice_date]').css('display','block');
