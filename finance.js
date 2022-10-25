@@ -116,13 +116,24 @@ SateraitoWF.hideRouteSelection(form);
 
     // DOCUMENT STATUS CONTROL
     var doc_status = SateraitoWF.getDocStatus(form);
+    var processInfos = SateraitoWF.getApproveProcessInfo(form);
+
+    console.log('processInfos : ' + processInfos[1].status);
     console.log('doc_status : '+ doc_status);
+    var statusProcess = processInfos[1].status;
+    if(statusProcess = 'in_process'){
+        $(form).find('input[name=invoice_date]').css('display','block');
+        $(form).find('input[name=invoice_date]').addClass( 'mandatory' );
+
+        $(form).find('input[name=payment_due_date]').css('display','block');
+        $(form).find('input[name=payment_due_date]').addClass( 'mandatory' );
+    }
+
     //     if(doc_status == 'final_approved'){
     // 		SateraitoWF.enableFormElement(form, 'btn2');
     // 	}else{
     // 		SateraitoWF.disableFormElement(form, 'btn2');
     // 	}
-
 
     //SET INVOICE CODE - display select
     var dept =  SateraitoWF.getFormValue(form, 'Department');
