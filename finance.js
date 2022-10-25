@@ -116,7 +116,7 @@ SateraitoWF.hideRouteSelection(form);
 
     // DOCUMENT STATUS CONTROL
     var doc_status = SateraitoWF.getDocStatus(form);
-    var processInfos = SatelliteWF.getApproveProcessInfo(form);
+    var processInfos = SateraitoWF.getApproveProcessInfo(form);
 
     console.log('processInfos : ' + processInfos);
     console.log('doc_status : '+ doc_status);
