@@ -131,7 +131,7 @@ SateraitoWF.hideRouteSelection(form);
         $(form).find('input[name=payment_due_date]').addClass( 'mandatory' );
     }else{
         $(form).find('.hide_if_not_final_approver').hide();
-
+    }
 
     //     if(doc_status == 'final_approved'){
     // 		SateraitoWF.enableFormElement(form, 'btn2');
