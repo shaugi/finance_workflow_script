@@ -116,58 +116,98 @@ function calculateTotalAmount(){
         case 'BS-CEBL':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'BS/CEBL/');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('BS-CEBL');
         break;
         case 'BS-HRC':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'HRC');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('BS-HRC');
         break;
         case 'BS-HRC-PAY':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'PAY');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('BS-HRC-PAY');
         break;
         case 'BS-HRC-PSY':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'PSY');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('BS-HRC-PSY');
         break;
         case 'BS-HRC-TRN':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'TRN');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('BS-HRC-TRN');
         break;
         case 'BS-Visa':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'BS/VISA');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('BS-Visa');
         break;
         case 'GS-Ginojishuusei':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'GJ');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('GS-Ginojishuusei');
         break;
         case 'GS-Kaigo':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'KG');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('GS-Kaigo');
         break;
         case 'Language Course':
             SateraitoWF.disableFormElement(form, 'invoice_code');
             SateraitoWF.setFormValue(form, 'code_invoice', 'LC/IN');
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             generate_code();
             console.log('Language Course');
         break;
         default:
+            $(form).find('.invoice_code_ts').remove();
+            $(form).find('.invoice_code_bs').remove();
+            $(form).find('.invoice_code_es').remove();
+            $(form).find('.invoice_code_gs').remove();
             console.log('divisi kosong');
     }
 
