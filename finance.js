@@ -116,82 +116,82 @@ function calculateTotalAmount(){
         break;
         case 'BS-CEBL':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code = SateraitoWF.setFormValue(form, 'code_invoice', 'BS/CEBL/');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'BS/CEBL/');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('BS/CEBL/');
             console.log('BS-CEBL');
         break;
         case 'BS-HRC':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code = SateraitoWF.setFormValue(form, 'code_invoice', 'HRC');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'HRC');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('HRC');
             console.log('BS-HRC');
         break;
         case 'BS-HRC-PAY':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code = SateraitoWF.setFormValue(form, 'code_invoice', 'PAY');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'PAY');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('PAY');
             console.log('BS-HRC-PAY');
         break;
         case 'BS-HRC-PSY':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code = SateraitoWF.setFormValue(form, 'code_invoice', 'PSY');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'PSY');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('PSY');
             console.log('BS-HRC-PSY');
         break;
         case 'BS-HRC-TRN':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code = SateraitoWF.setFormValue(form, 'code_invoice', 'TRN');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'TR');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('TR');
             console.log('BS-HRC-TRN');
         break;
         case 'BS-Visa':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code = SateraitoWF.setFormValue(form, 'code_invoice', 'BS/VISA');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'BS/VISA');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('BS/VISA/');
             console.log('BS-Visa');
         break;
         case 'GS-Ginojishuusei':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code = SateraitoWF.setFormValue(form, 'code_invoice', 'GJ');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'GJ');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('GJ');
             console.log('GS-Ginojishuusei');
         break;
         case 'GS-Kaigo':
             SateraitoWF.disableFormElement(form, 'invoice_code');
-            var invoice_code =  SateraitoWF.setFormValue(form, 'code_invoice', 'KG');
+            SateraitoWF.setFormValue(form, 'code_invoice', 'KG');
             $(form).find('.invoice_code_ts').remove();
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('KG');
             console.log('GS-Kaigo');
         break;
         case 'Language Course':
@@ -201,7 +201,7 @@ function calculateTotalAmount(){
             $(form).find('.invoice_code_bs').remove();
             $(form).find('.invoice_code_es').remove();
             $(form).find('.invoice_code_gs').remove();
-            generate_code(invoice_code);
+            generate_code('LC/IN/');
             console.log('Language Course');
         break;
         default:
