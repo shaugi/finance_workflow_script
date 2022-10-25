@@ -123,7 +123,7 @@ SateraitoWF.hideRouteSelection(form);
     console.log('doc_status : '+ doc_status);
 
     var statusProcess = processInfos[1].status;
-    if(statusProcess = 'in_process'){
+    if(statusProcess == 'in_process'){
         $(form).find('input[name=invoice_date]').css('display','block');
         $(form).find('input[name=invoice_date]').addClass( 'mandatory' );
 
@@ -131,7 +131,7 @@ SateraitoWF.hideRouteSelection(form);
         $(form).find('input[name=payment_due_date]').addClass( 'mandatory' );
     }else{
         $(form).find('.hide_if_not_final_approver').hide();
-    }
+
 
     //     if(doc_status == 'final_approved'){
     // 		SateraitoWF.enableFormElement(form, 'btn2');
