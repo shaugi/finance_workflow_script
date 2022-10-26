@@ -115,23 +115,26 @@ SateraitoWF.hideRouteSelection(form);
 
 
     // DOCUMENT STATUS CONTROL
-    var doc_status = SateraitoWF.getDocStatus(form);
-    var processInfos = SateraitoWF.getApproveProcessInfo(form);
+    if(window.onload){
+        var doc_status = SateraitoWF.getDocStatus(form);
+        var processInfos = SateraitoWF.getApproveProcessInfo(form);
 
-    console.log('processInfos : ' + processInfos[1]);
-    console.log('processInfos status : ' + processInfos[1].status);
-    console.log('doc_status : '+ doc_status);
+        console.log('processInfos : ' + processInfos[1]);
+        console.log('processInfos status : ' + processInfos[1].status);
+        console.log('doc_status : '+ doc_status);
 
-    var statusProcess = processInfos[1].status;
-    if(statusProcess == 'in_process'){
-        $(form).find('input[name=invoice_date]').css('display','block');
-        $(form).find('input[name=invoice_date]').addClass( 'mandatory' );
+        var statusProcess = processInfos[1].status;
+        if(statusProcess == 'in_process'){
+            $(form).find('input[name=invoice_date]').css('display','block');
+            $(form).find('input[name=invoice_date]').addClass( 'mandatory' );
 
-        $(form).find('input[name=payment_due_date]').css('display','block');
-        $(form).find('input[name=payment_due_date]').addClass( 'mandatory' );
-    }else{
-        $(form).find('.hide_if_not_final_approver').hide();
+            $(form).find('input[name=payment_due_date]').css('display','block');
+            $(form).find('input[name=payment_due_date]').addClass( 'mandatory' );
+        }else{
+            $(form).find('.hide_if_not_final_approver').hide();
+        }
     }
+
 
     //     if(doc_status == 'final_approved'){
     // 		SateraitoWF.enableFormElement(form, 'btn2');
