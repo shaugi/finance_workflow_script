@@ -4,53 +4,114 @@ console.log(" SateraitoWF.getForm(this) : "+ form);
 //==========FUNCTION=============//
 function service2validator(){
     var description2 = SateraitoWF.getFormValue(form, 'description2');
-    var qty2 = document.getElementsByName('qty2');
-    var unit_price2 = document.getElementsByName('unit_price2');
-    var amount2 = document.getElementsByName('amount2');
+    var description3 = SateraitoWF.getFormValue(form, 'description3');
+    var description4 = SateraitoWF.getFormValue(form, 'description4');
+    var description5 = SateraitoWF.getFormValue(form, 'description5');
+    var description6 = SateraitoWF.getFormValue(form, 'description6');
+    var description7 = SateraitoWF.getFormValue(form, 'description7');
+    var description8 = SateraitoWF.getFormValue(form, 'description8');
 
+    console.log(description2);
 
-    if(description2.value != null){
-        console.log('changed not null');
-        qty2.class += 'mandatory';
-        qty2.sateraito_class += 'mandatory';
-        unit_price2.class += 'mandatory';
-        unit_price2.sateraito_class += 'mandatory';
-        amount2.class += 'mandatory';
-        amount2.sateraito_class += 'mandatory';
-    }else{
-        console.log('changed null');
+    if(description2.length > 0){
+        SateraitoWF.enableFormElement(form, 'quantity2');
+        SateraitoWF.enableFormElement(form, 'unit_price2');
+        $(form).find(':input[name=quantity2]').addClass('mandatory');
+        $(form).find(':input[name=quantity2]').attr('mandatory_msg','Please insert quantity on number 2');
+        $(form).find(':input[name=unit_price2]').addClass('mandatory');
+        $(form).find(':input[name=unit_price2]').attr('mandatory_msg','Please insert unit price on number 2');
+    }
+    if(description3.length > 0){
+        SateraitoWF.enableFormElement(form, 'quantity3');
+        SateraitoWF.enableFormElement(form, 'unit_price3');
+        $(form).find(':input[name=quantity3]').addClass('mandatory');
+        $(form).find(':input[name=quantity3]').attr('mandatory_msg','Please insert quantity on number 3');
+        $(form).find(':input[name=unit_price3]').addClass('mandatory');
+        $(form).find(':input[name=unit_price3]').attr('mandatory_msg','Please insert unit price on number 3');
+    }
+    if(description4.length > 0){
+        SateraitoWF.enableFormElement(form, 'quantity4');
+        SateraitoWF.enableFormElement(form, 'unit_price4');
+        $(form).find(':input[name=quantity4]').addClass('mandatory');
+        $(form).find(':input[name=quantity4]').attr('mandatory_msg','Please insert quantity on number 4');
+        $(form).find(':input[name=unit_price4]').addClass('mandatory');
+        $(form).find(':input[name=unit_price4]').attr('mandatory_msg','Please insert unit price on number 4');
+    }
+    if(description5.length > 0){
+        SateraitoWF.enableFormElement(form, 'quantity5');
+        SateraitoWF.enableFormElement(form, 'unit_price5');
+        $(form).find(':input[name=quantity5]').addClass('mandatory');
+        $(form).find(':input[name=quantity5]').attr('mandatory_msg','Please insert quantity on number 5');
+        $(form).find(':input[name=unit_price5]').addClass('mandatory');
+        $(form).find(':input[name=unit_price5]').attr('mandatory_msg','Please insert unit price on number 5');
+    }
+    if(description6.length > 0){
+        SateraitoWF.enableFormElement(form, 'quantity6');
+        SateraitoWF.enableFormElement(form, 'unit_price6');
+        $(form).find(':input[name=quantity6]').addClass('mandatory');
+        $(form).find(':input[name=quantity6]').attr('mandatory_msg','Please insert quantity on number 6');
+        $(form).find(':input[name=unit_price6]').addClass('mandatory');
+        $(form).find(':input[name=unit_price6]').attr('mandatory_msg','Please insert unit price on number 6');
+    }
+    if(description7.length > 0){
+        SateraitoWF.enableFormElement(form, 'quantity7');
+        SateraitoWF.enableFormElement(form, 'unit_price7');
+        $(form).find(':input[name=quantity7]').addClass('mandatory');
+        $(form).find(':input[name=quantity7]').attr('mandatory_msg','Please insert quantity on number 7');
+        $(form).find(':input[name=unit_price7]').addClass('mandatory');
+        $(form).find(':input[name=unit_price7]').attr('mandatory_msg','Please insert unit price on number 7');
+    }
+    if(description8.length > 0){
+        SateraitoWF.enableFormElement(form, 'quantity8');
+        SateraitoWF.enableFormElement(form, 'unit_price8');
+        $(form).find(':input[name=quantity8]').addClass('mandatory');
+        $(form).find(':input[name=quantity8]').attr('mandatory_msg','Please insert quantity on number 8');
+        $(form).find(':input[name=unit_price8]').addClass('mandatory');
+        $(form).find(':input[name=unit_price8]').attr('mandatory_msg','Please insert unit price on number 8');
     }
 }
 
+function calculate_amount(numb){
+    var qty = 'quantity'+numb;
+    var up = 'unit_price'+numb;
+    var amount = 'amount'+numb;
+    var quantity = SateraitoWF.getFormValue(form, qty);
+    var unit_price = SateraitoWF.getFormValue(form, up);
+    SateraitoWF.setFormValue(form, amount, quantity * unit_price);
+    SateraitoWF.setFormValue(form, 'total_amount', '');
+}
+
 function calculateTotalAmount(){
+    var amount1 = SateraitoWF.getFormValue(form, 'amount1');
+    var amount2 = SateraitoWF.getFormValue(form, 'amount2');
+    var amount3 = SateraitoWF.getFormValue(form, 'amount3');
+    var amount4 = SateraitoWF.getFormValue(form, 'amount4');
+    var amount5 = SateraitoWF.getFormValue(form, 'amount5');
+    var amount6 = SateraitoWF.getFormValue(form, 'amount6');
+    var amount7 = SateraitoWF.getFormValue(form, 'amount7');
+    var amount8 = SateraitoWF.getFormValue(form, 'amount8');
 
-    var qty1 = SateraitoWF.getFormValue(form, 'quantity1');
-    var qty2 = SateraitoWF.getFormValue(form, 'quantity2');
-    var qty3 = SateraitoWF.getFormValue(form, 'quantity3');
-    var qty4 = SateraitoWF.getFormValue(form, 'quantity4');
-    var qty5 = SateraitoWF.getFormValue(form, 'quantity5');
-    var qty6 = SateraitoWF.getFormValue(form, 'quantity6');
-    var qty7 = SateraitoWF.getFormValue(form, 'quantity7');
-    var qty8 = SateraitoWF.getFormValue(form, 'quantity8');
-    var unit_price1 = SateraitoWF.getFormValue(form, 'unit_price1');
-    var unit_price2 = SateraitoWF.getFormValue(form, 'unit_price2');
-    var unit_price3 = SateraitoWF.getFormValue(form, 'unit_price3');
-    var unit_price4 = SateraitoWF.getFormValue(form, 'unit_price4');
-    var unit_price5 = SateraitoWF.getFormValue(form, 'unit_price5');
-    var unit_price6 = SateraitoWF.getFormValue(form, 'unit_price6');
-    var unit_price7 = SateraitoWF.getFormValue(form, 'unit_price7');
-    var unit_price8 = SateraitoWF.getFormValue(form, 'unit_price8');
 
-    var amount1 = SateraitoWF.setFormValue(form, 'amount1', qty1 * unit_price1);
-    var amount2 = SateraitoWF.setFormValue(form, 'amount2', qty2 * unit_price2);
-    var amount3 = SateraitoWF.setFormValue(form, 'amount3', qty3 * unit_price3);
-    var amount4 = SateraitoWF.setFormValue(form, 'amount4', qty4 * unit_price4);
-    var amount5 = SateraitoWF.setFormValue(form, 'amount5', qty5 * unit_price5);
-    var amount6 = SateraitoWF.setFormValue(form, 'amount6', qty6 * unit_price6);
-    var amount7 = SateraitoWF.setFormValue(form, 'amount7', qty7 * unit_price7);
-    var amount8 = SateraitoWF.setFormValue(form, 'amount8', qty8 * unit_price8);
 
-    var total = (qty1 * unit_price1) + (qty2 * unit_price2) + (qty3 * unit_price3) + (qty4 * unit_price4) + (qty5 * unit_price5) + (qty6 * unit_price6) + (qty7 * unit_price7) + (qty8 * unit_price8)
+    amount1 =  parseInt(amount1) || 0;
+    amount2 =  parseInt(amount2) || 0;
+    amount3 =  parseInt(amount3) || 0;
+    amount4 =  parseInt(amount4) || 0;
+    amount5 =  parseInt(amount5) || 0;
+    amount6 =  parseInt(amount6) || 0;
+    amount7 =  parseInt(amount7) || 0;
+    amount8 =  parseInt(amount8) || 0;
+
+    console.log('amount1 :'+ amount1);
+    console.log('amount2 :'+ amount2);
+    console.log('amount3 :'+ amount3);
+    console.log('amount4 :'+ amount4);
+    console.log('amount5 :'+ amount5);
+    console.log('amount6 :'+ amount6);
+    console.log('amount7 :'+ amount7);
+    console.log('amount8 :'+ amount8);
+
+    var total = amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8;
     SateraitoWF.setFormValue(form, 'total_amount', total);
 }
 
@@ -61,8 +122,8 @@ function generate_code(invoice_code){
     year = year.slice(2,-6);
     SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoice_numer+'OSL');
 
-    var generate_code_final = SateraitoWF.getFormValue(form, 'generated_code');
-    SateraitoWF.setFormValue(form, 'No', 'OSSI/FINANCE/'+generate_code_final)
+    // var generate_code_final = SateraitoWF.getFormValue(form, 'generated_code');
+    // SateraitoWF.setFormValue(form, 'No', 'OSSI/FINANCE/'+generate_code_final)
 }
 
 //==========DOCUMENT CONTROL=============//
@@ -100,10 +161,10 @@ function generate_code(invoice_code){
         SateraitoWF.setFormValue(form, 'month', 'DEC');
     }
 
-SateraitoWF.hideRouteSelection(form);
+    SateraitoWF.hideRouteSelection(form);
 
     //GET INVOICE NUMBER
-    var results =  SateraitoWF.getMasterData('finance_invoice_number') ;
+    var results =  SateraitoWF.getMasterData('finance_invoice_number');
     Ext.each(results, function(){
         console.log('number : '+ this.attribute_1)
         var fixnum = String(this.attribute_1).padStart(4, '0')
@@ -113,29 +174,55 @@ SateraitoWF.hideRouteSelection(form);
     let invoice_numer = SateraitoWF.getFormValue(form, 'invoice_number');
 
 
-
     // DOCUMENT STATUS CONTROL
-    if(window.onload){
-        var doc_status = SateraitoWF.getDocStatus(form);
-        var processInfos = SateraitoWF.getApproveProcessInfo(form);
+    var doc_status = SateraitoWF.getDocStatus(form);
+    console.log('doc_status : '+ doc_status);
+    //default disable invoice date&invoice due date
+    $(form).find('.finance_only').css('display','none');
+    SateraitoWF.disableFormElement(form,'invoice_date');
+    SateraitoWF.disableFormElement(form,'payment_due_date');
 
+    if(doc_status == 'in_process'){
+        var processInfos = SateraitoWF.getApproveProcessInfo(form);
         console.log('processInfos : ' + processInfos[1]);
         console.log('processInfos status : ' + processInfos[1].status);
-        console.log('doc_status : '+ doc_status);
+        // SateraitoWF.disableFormElement(form,'button_calculate');
+        // $(form).find(':input[name=button_calculate]').css('display','none');
 
         var statusProcess = processInfos[1].status;
-        if(statusProcess == 'in_process'){
-            $(form).find('input[name=invoice_date]').css('display','block');
-            $(form).find('input[name=invoice_date]').addClass( 'mandatory' );
+        if(statusProcess == 'in_process' || statusProcess == 'final_approved'){
+            //enable invoice date field
+            $(form).find('.finance_only').css('display','block');
+            $(form).find('.hide_if_not_final_approver').css('display','block');
 
-            $(form).find('input[name=payment_due_date]').css('display','block');
-            $(form).find('input[name=payment_due_date]').addClass( 'mandatory' );
-        }else{
-            $(form).find('.hide_if_not_final_approver').hide();
+            $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
+            $(form).find(':input[name=invoice_date]').addClass('mandatory');
+
+            $(form).find(':input[name=payment_due_date]').attr('mandatory_msg','Please select payment due date');
+            $(form).find(':input[name=payment_due_date]').addClass('mandatory');
+
+            SateraitoWF.enableFormElement(form,'invoice_date');
+            SateraitoWF.enableFormElement(form,'payment_due_date');
+
+            console.log('due date' + SateraitoWF.getFormValue(form, 'payment_due_date'))
+            console.log('date' + SateraitoWF.getFormValue(form, 'invoice_date'))
         }
     }
 
-
+    SateraitoWF.disableFormElement(form, 'quantity2');
+    SateraitoWF.disableFormElement(form, 'quantity3');
+    SateraitoWF.disableFormElement(form, 'quantity4');
+    SateraitoWF.disableFormElement(form, 'quantity5');
+    SateraitoWF.disableFormElement(form, 'quantity6');
+    SateraitoWF.disableFormElement(form, 'quantity7');
+    SateraitoWF.disableFormElement(form, 'quantity8');
+    SateraitoWF.disableFormElement(form, 'unit_price2');
+    SateraitoWF.disableFormElement(form, 'unit_price3');
+    SateraitoWF.disableFormElement(form, 'unit_price4');
+    SateraitoWF.disableFormElement(form, 'unit_price5');
+    SateraitoWF.disableFormElement(form, 'unit_price6');
+    SateraitoWF.disableFormElement(form, 'unit_price7');
+    SateraitoWF.disableFormElement(form, 'unit_price8');
     //     if(doc_status == 'final_approved'){
     // 		SateraitoWF.enableFormElement(form, 'btn2');
     // 	}else{
@@ -272,8 +359,14 @@ SateraitoWF.hideRouteSelection(form);
             console.log('divisi kosong');
     }
 
+    //onchange function
     $(form).find(':input[name=invoice_code]').change(function(){
         var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
         SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
         generate_code(invoice_code);
     });
+    //set default
+    var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
+    SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
+    generate_code(invoice_code);
+
