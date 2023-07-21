@@ -90,7 +90,7 @@ function calculateTotalAmount(){
     var amount6 = SateraitoWF.getFormValue(form, 'amount6');
     var amount7 = SateraitoWF.getFormValue(form, 'amount7');
     var amount8 = SateraitoWF.getFormValue(form, 'amount8');
-
+    var discount = SateraitoWF.getFormValue(form. 'invoice_discount');
 
 
     amount1 =  parseInt(amount1) || 0;
@@ -111,7 +111,7 @@ function calculateTotalAmount(){
     console.log('amount7 :'+ amount7);
     console.log('amount8 :'+ amount8);
 
-    var total = amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8;
+    var total = amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 - discount;
     SateraitoWF.setFormValue(form, 'total_amount', total);
 }
 
