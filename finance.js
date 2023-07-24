@@ -293,10 +293,6 @@ function push(){
             $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
             $(form).find(':input[name=invoice_date]').addClass('mandatory');
 
-            SateraitoWF.enableFormElement(form, 'payment_due_date');
-            $(form).find(':input[name=payment_due_date]').attr('mandatory_msg','Please select payment due date');
-            $(form).find(':input[name=payment_due_date]').addClass('mandatory');
-
             SateraitoWF.enableFormElement(form, 'vat_percentage');
             $(form).find(':input[name=vat_percentage]').attr('mandatory_msg','Please insert vat percentage');
             $(form).find(':input[name=vat_percentage]').addClass('mandatory');
