@@ -275,16 +275,17 @@ function push(){
     console.log('status = empty');
     $('.finance_only').css('display','none');
 
+    
     if(doc_status == 'in_process'){
         console.log('status = in_process')
         var processInfos = SateraitoWF.getApproveProcessInfo(form);
-        console.log('processInfos : ' + processInfos[1]);
-        console.log('processInfos status : ' + processInfos[1].status);
+        console.log('processInfos : ' + processInfos[3]);
+        console.log('processInfos status : ' + processInfos[3].status);
         SateraitoWF.disableFormElement(form,'button_calculate');
         $(form).find(':input[name=button_calculate]').css('display','none');
 
-        var statusProcess = processInfos[1].status;
-        if(processInfos[1].status == 'in_process' || statusProcess == 'final_approved'){
+        var statusProcess = processInfos[3].status;
+        if(processInfos[3].status == 'in_process' || statusProcess == 'final_approved'){
             //enable invoice date field
             $(form).find('.finance_only').css('display','block');
 
@@ -308,7 +309,7 @@ function push(){
             $(form).find(':input[name=discount]').attr('mandatory_msg','Please insert discount');
             $(form).find(':input[name=discount]').addClass('mandatory');
 
-        }else if(processInfos[2].status == 'in_process' || statusProcess == 'final_approved'){
+        }else if(processInfos[3].status == 'in_process' || statusProcess == 'final_approved'){
             $(form).find(':input[name=button_calculate]').css('display','none');
 
             console.log('pushed');
