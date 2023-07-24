@@ -285,7 +285,7 @@ function push(){
         $(form).find(':input[name=button_calculate]').css('display','none');
 
         var statusProcess = processInfos[2].status;
-        if(processInfos[2].status == 'in_process' || statusProcess == 'final_approved'){
+        if(processInfos[2].status == 'in_process'){
             //enable invoice date field
             $(form).find('.finance_only').css('display','block');
 
@@ -309,7 +309,7 @@ function push(){
             $(form).find(':input[name=discount]').attr('mandatory_msg','Please insert discount');
             $(form).find(':input[name=discount]').addClass('mandatory');
 
-        }else if(processInfos[3].status == 'in_process' || statusProcess == 'final_approved'){
+        }else if(processInfos[2].status == 'in_process'){
             $(form).find(':input[name=button_calculate]').css('display','none');
 
             console.log('pushed');
