@@ -279,13 +279,13 @@ function push(){
     if(doc_status == 'in_process'){
         console.log('status = in_process')
         var processInfos = SateraitoWF.getApproveProcessInfo(form);
-        console.log('processInfos : ' + processInfos[3]);
-        console.log('processInfos status : ' + processInfos[3].status);
+        console.log('processInfos : ' + processInfos[2]);
+        console.log('processInfos status : ' + processInfos[2].status);
         SateraitoWF.disableFormElement(form,'button_calculate');
         $(form).find(':input[name=button_calculate]').css('display','none');
 
-        var statusProcess = processInfos[3].status;
-        if(processInfos[3].status == 'in_process' || statusProcess == 'final_approved'){
+        var statusProcess = processInfos[2].status;
+        if(processInfos[2].status == 'in_process' || statusProcess == 'final_approved'){
             //enable invoice date field
             $(form).find('.finance_only').css('display','block');
 
