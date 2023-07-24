@@ -281,8 +281,8 @@ function push(){
         var processInfos = SateraitoWF.getApproveProcessInfo(form);
         console.log('processInfos : ' + processInfos[2]);
         console.log('processInfos status : ' + processInfos[2].status);
-        SateraitoWF.disableFormElement(form,'button_calculate');
-        $(form).find(':input[name=button_calculate]').css('display','none');
+        //SateraitoWF.disableFormElement(form,'button_calculate');
+        //$(form).find(':input[name=button_calculate]').css('display','none');
 
         var statusProcess = processInfos[2].status;
         if(processInfos[2].status == 'in_process'){
@@ -306,7 +306,7 @@ function push(){
             $(form).find(':input[name=discount]').addClass('mandatory');
 
         }else if(processInfos[2].status == 'in_process'){
-            $(form).find(':input[name=button_calculate]').css('display','none');
+            //$(form).find(':input[name=button_calculate]').css('display','none');
 
             console.log('pushed');
             push();
