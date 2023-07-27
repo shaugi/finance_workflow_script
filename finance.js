@@ -356,6 +356,15 @@ function push(){
     // 		SateraitoWF.disableFormElement(form, 'btn2');
     // 	}
 
+    $(form).find(':input[name=invoice_date]').blur(function(){
+        var a = SateraitoWF.getFormValue(form, 'invoice_date'); 
+        if (a == null || a == '' ){
+            $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
+            $(form).find(':input[name=invoice_date]').addClass('mandatory');
+            SateraitoWF.alert(form, 'Please insert invoice date before approve')
+        }
+    });
+
     //SET INVOICE CODE - display select
     var dept =  SateraitoWF.getFormValue(form, 'Department');
 
