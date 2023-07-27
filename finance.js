@@ -294,6 +294,14 @@ function push(){
             $(form).find('.finance_only').css('display','block');
 
             SateraitoWF.enableFormElement(form, 'invoice_date');
+            $(form).find(':input[name=invoice_date]').blur(function(){
+                 var a = SateraitoWF.getFormValue(form, 'invoice_date'); 
+                 if (a == null || a == '' ){
+                     $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
+                     $(form).find(':input[name=invoice_date]').addClass('mandatory');
+                 }
+             });
+
             $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
             $(form).find(':input[name=invoice_date]').addClass('mandatory');
 
