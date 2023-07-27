@@ -117,10 +117,11 @@ function calculateTotalAmount(){
 
 
 //GENERATE CODE & APPLICATION NUMBER
+let invoice_number_view = SateraitoWF.getFormValue(form, 'invoice_number_view');
 function generate_code(invoice_code){
     var year = SateraitoWF.getFormValue(form, 'dummy_date');
     year = year.slice(2,-6);
-    SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoice_numer+'OSL');
+    SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoice_number_view+'OSL');
 
     // var generate_code_final = SateraitoWF.getFormValue(form, 'generated_code');
     // SateraitoWF.setFormValue(form, 'No', 'OSSI/FINANCE/'+generate_code_final)
