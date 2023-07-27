@@ -361,7 +361,7 @@ function push(){
         if (a == null || a == '' ){
             $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
             $(form).find(':input[name=invoice_date]').addClass('mandatory');
-            SateraitoWF.alert(form, 'Please insert invoice date before approve')
+            SateraitoWF.alert('Before you approve, make sure you include the invoice date.')
         }
     });
 
