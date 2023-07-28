@@ -267,10 +267,11 @@ function push(){
         var fixnum = String(this.attribute_1).padStart(4, '0')
         console.log(fixnum);
         SateraitoWF.setFormValue(form, 'invoice_number', fixnum);
+        SateraitoWF.setFormValue(form, 'invoice_number_view', fixnum)
+
     });
 
     let invoice_numer = SateraitoWF.getFormValue(form, 'invoice_number');
-
 
     // DOCUMENT STATUS CONTROL
     var doc_status = SateraitoWF.getDocStatus(form);
@@ -279,7 +280,7 @@ function push(){
     console.log('status = empty');
     $('.finance_only').css('display','none');
 
-    
+
     if(doc_status == 'in_process'){
         console.log('status = in_process')
         var processInfos = SateraitoWF.getApproveProcessInfo(form);
@@ -295,7 +296,7 @@ function push(){
 
             SateraitoWF.enableFormElement(form, 'invoice_date');
             $(form).find(':input[name=invoice_date]').blur(function(){
-                 var a = SateraitoWF.getFormValue(form, 'invoice_date'); 
+                 var a = SateraitoWF.getFormValue(form, 'invoice_date');
                  if (a == null || a == '' ){
                      $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
                      $(form).find(':input[name=invoice_date]').addClass('mandatory');
@@ -357,7 +358,7 @@ function push(){
     // 	}
 
     $(form).find(':input[name=invoice_date]').blur(function(){
-        var a = SateraitoWF.getFormValue(form, 'invoice_date'); 
+        var a = SateraitoWF.getFormValue(form, 'invoice_date');
         if (a == null || a == '' ){
             $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
             $(form).find(':input[name=invoice_date]').addClass('mandatory');
