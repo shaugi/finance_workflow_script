@@ -500,6 +500,7 @@ function push(){
 
     //onchange function
      $(form).find(':input[name=invoice_code]').change(function(){
+    SateraitoWF.setFormValue(form, 'generated_code','');
     var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
     SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
 
@@ -522,4 +523,3 @@ function push(){
     var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
     SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
     generate_code(invoice_code);
-    SateraitoWF.setFormValue(form, 'generated_code','');
