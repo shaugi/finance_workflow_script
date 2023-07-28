@@ -506,7 +506,7 @@ function push(){
         var results =  SateraitoWF.getMasterData('finance_invoice_number');
         Ext.each(results, function(){
             console.log('number : '+ this.attribute_1)
-            var fixnum = String(this.attribute_1).padStart(4, '0')
+            var fixnum = String(invoice_number_view).padStart(4, '0')
             console.log(fixnum);
             SateraitoWF.setFormValue(form, 'invoice_number', fixnum);
             SateraitoWF.setFormValue(form, 'invoice_number_view', fixnum)
