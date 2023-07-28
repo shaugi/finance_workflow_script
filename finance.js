@@ -499,10 +499,15 @@ function push(){
     }
 
     //onchange function
-    $(form).find(':input[name=invoice_code]').change(function(){
+   $(form).find(':input[name=invoice_code]').change(function(){
         var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
         SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
-        generate_code(invoice_code);
+        // generate_code(invoice_code);
+        var year = SateraitoWF.getFormValue(form, 'dummy_date');
+        year = year.slice(2,-6);
+        console.log('year :'+ year);
+        console.log('invoice_number_view :'+invoice_number_view);
+        SateraitoWF.setFormValue(form, 'generated_code', invoice_code+year+invoice_number_view+'OSL');
     });
     //set default
     var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
