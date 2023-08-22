@@ -592,7 +592,6 @@ function addService(){
             //     }
             // });
         }
-
     }
 
     $(form).find(':input[name=invoice_date]').blur(function(){
