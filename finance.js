@@ -365,6 +365,7 @@ function push(){
     });
 }
 
+
 function showLastInvNumber(){
     // console.log("results[0].attribute_1 : "+results[0].attribute_1)
 
@@ -662,4 +663,4 @@ function addService(){
     // SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
     // generate_code(invoice_code);
 
-    showLastInvNumber();
+    // showLastInvNumber();
