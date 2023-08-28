@@ -366,6 +366,70 @@ function push(){
 }
 
 
+
+function createInvoice(){
+    var data =
+    {
+        "issue_date" : SateraitoWF.getFormValue(form, 'invoice_date'),
+        "invoice_no" : SateraitoWF.getFormValue(form, 'generated_code'),
+        "currency_rate" : SateraitoWF.getFormValue(form, 'ex_rate'),
+        "to" : SateraitoWF.getFormValue(form, 'To'),
+        "attn" : SateraitoWF.getFormValue(form, 'attn'),
+        "company" : SateraitoWF.getFormValue(form, 'company_name'),
+        "title1" : SateraitoWF.getFormValue(form, 'description1'),
+        "qty1" : SateraitoWF.getFormValue(form, 'quantity1'),
+        "unit_price1" : SateraitoWF.getFormValue(form, 'unit_price1'),
+        "amount1" : SateraitoWF.getFormValue(form, 'amount1'),
+        "title2" : SateraitoWF.getFormValue(form, 'description2'),
+        "qty2" : SateraitoWF.getFormValue(form, 'quantity2'),
+        "unit_price2" : SateraitoWF.getFormValue(form, 'unit_price2'),
+        "amount2" : SateraitoWF.getFormValue(form, 'amount2'),
+        "title3" : SateraitoWF.getFormValue(form, 'description3'),
+        "qty3" : SateraitoWF.getFormValue(form, 'quantity3'),
+        "unit_price3" : SateraitoWF.getFormValue(form, 'unit_price3'),
+        "amount3" : SateraitoWF.getFormValue(form, 'amount3'),
+        "title4" : SateraitoWF.getFormValue(form, 'description4'),
+        "qty4" : SateraitoWF.getFormValue(form, 'quantity4'),
+        "unit_price4" : SateraitoWF.getFormValue(form, 'unit_price4'),
+        "amount4" : SateraitoWF.getFormValue(form, 'amount4'),
+        "title5" : SateraitoWF.getFormValue(form, 'description5'),
+        "qty5" : SateraitoWF.getFormValue(form, 'quantity5'),
+        "unit_price5" : SateraitoWF.getFormValue(form, 'unit_price5'),
+        "amount5" : SateraitoWF.getFormValue(form, 'amount5'),
+        "title6" : SateraitoWF.getFormValue(form, 'description6'),
+        "qty6" : SateraitoWF.getFormValue(form, 'quantity6'),
+        "unit_price6" : SateraitoWF.getFormValue(form, 'unit_price6'),
+        "amount6" : SateraitoWF.getFormValue(form, 'amount6'),
+        "title7" : SateraitoWF.getFormValue(form, 'description7'),
+        "qty7" : SateraitoWF.getFormValue(form, 'quantity7'),
+        "unit_price7" : SateraitoWF.getFormValue(form, 'unit_price7'),
+        "amount7" : SateraitoWF.getFormValue(form, 'amount7'),
+        "title8" : SateraitoWF.getFormValue(form, 'description8'),
+        "qty8" : SateraitoWF.getFormValue(form, 'quantity8'),
+        "unit_price8" : SateraitoWF.getFormValue(form, 'unit_price8'),
+        "amount8" : SateraitoWF.getFormValue(form, 'amount8'),
+        "vat" : SateraitoWF.getFormValue(form, 'vat_percentage'),
+        "wht" : SateraitoWF.getFormValue(form, 'witholding_tax'),
+        "discount" : SateraitoWF.getFormValue(form, 'invoice_discount'),
+        "remarks" : SateraitoWF.getFormValue(form, 'remaks'),
+        "payment_due_date" : SateraitoWF.getFormValue(form, 'payment_due_date'),
+        "grand_total": SateraitoWF.getFormValue(form, 'total_amount'),
+        "service" : SateraitoWF.getFormValue(form, 'service_dept')
+    }
+    $.ajax({
+        type: 'POST',
+        url: 'https://prod-29.southeastasia.logic.azure.com:443/workflows/94f5b8b53d984fb3917ec9f2fe1f8706/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vj76isFXn9SkyC9RNGcmwkbyFWix0FMq1j-ixiMpbYE',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify(data),
+        success: function(success){
+            console.log(success);},
+        error: function(errMsg) {
+            console.log(errMsg);
+        }
+    });
+}
+
 function showLastInvNumber(){
     // console.log("results[0].attribute_1 : "+results[0].attribute_1)
 
@@ -664,3 +728,9 @@ function addService(){
     // generate_code(invoice_code);
 
     // showLastInvNumber();
+    SateraitoWF.disableFormElement(form, "button_print_invoice");
+    if(doc_status == 'in_process'){
+        if(processInfos[3].status == 'in_process'){
+            SateraitoWF.enableFormElement(form, "button_print_invoice");
+        }
+    }
