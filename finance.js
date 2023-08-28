@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-form = SateraitoWF.getForm(document.getElementsByName('workflow_doc_load_handler'));
-=======
-// debugger;
-
 form = SateraitoWF.getForm(document.getElementsByName('workflow_doc_load_handler'));
 let total_vat = 0;
 let total_wht = 0;
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
 
 //==========FUNCTION=============//
 function service2validator(){
@@ -136,6 +130,7 @@ function calculate_amount(numb){
 
     var total_amount = (quantity * unit_price) + ((quantity * unit_price) * (vate / 100)) - ((quantity * unit_price) * (whit / 100)) ;
 
+    total_amount = customRound(total_amount);
     SateraitoWF.setFormValue(form, amount, total_amount);
     SateraitoWF.setFormValue(form, 'total_amount', '');
 }
@@ -260,107 +255,105 @@ function calculateTotalAmount(){
     total_vat = total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8 ;
     total_wht = total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 ;
 
-    SateraitoWF.setFormValue(form, 'witholding_tax', total_wht);
-    SateraitoWF.setFormValue(form, 'vat_percentage', total_vat);
+    SateraitoWF.setFormValue(form, 'witholding_tax', customRound(total_wht));
+    SateraitoWF.setFormValue(form, 'vat_percentage', customRound(total_vat));
 
     var total = amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 - discount;
     SateraitoWF.setFormValue(form, 'total_amount', total);
 }
 //GENERATE CODE & APPLICATION NUMBER
 function generate_code(invoice_code){
-
+    //nanti aja
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
 //PUSH TO POWERAUTOMATE
 function push(){
     var data =
     {
-        "invoice_number": SateraitoWF.getFormValue(form, 'generated_code'),
-        "invoice_to": SateraitoWF.getFormValue(form, 'To'),
-        "invoice_attn" : SateraitoWF.getFormValue(form, 'attn'),
-        "invoice_date": SateraitoWF.getFormValue(form, 'invoice_date'),
-        "payment_due_date": SateraitoWF.getFormValue(form, 'payment_due_date'),
-        "wf_document" : SateraitoWF.getFormValue(form, 'payment_due_date'),
-        "currency": SateraitoWF.getFormValue(form, 'URL_Application'),
-        "VAT_percentage" : SateraitoWF.getFormValue(form, 'vat_percentage'), //1
-        "witholding_tax" : SateraitoWF.getFormValue(form, 'witholding_tax'), //2
-        "invoice_discount" : SateraitoWF.getFormValue(form, 'invoice_discount'), //3
-        "grand_total": SateraitoWF.getFormValue(form, 'total_amount'),
-        "currency" : SateraitoWF.getFormValue(form, 'curency'),
+        'month' : SateraitoWF.getFormValue(form, 'month'),
+        'group' : SateraitoWF.getFormValue(form, 'Department'),
+        'details_code' : SateraitoWF.getFormValue(form, 'invoice_code'),
+        'issue_date' : SateraitoWF.getFormValue(form, 'invoice_date'),
+        'invoice_no' : SateraitoWF.getFormValue(form, 'generated_code'),
+        'currency' : SateraitoWF.getFormValue(form, 'curency'),
+        'currency_rate' : SateraitoWF.getFormValue(form, 'ex_rate'),
+        'subcount' : {
+            'subcount_name': SateraitoWF.getFormValue(form, 'Subcount_name'),
+            'cost_usd' : SateraitoWF.getFormValue(form, 'cost_usd'),
+            'cost_idr' : SateraitoWF.getFormValue(form, 'cost_idr'),
+            'cost_jpy' : SateraitoWF.getFormValue(form, 'cost_jpy'),
+            'cost_sgd' : SateraitoWF.getFormValue(form, 'cost_sgd'),
+            'subcount_details' : SateraitoWF.getFormValue(form, 'subcount_details')
+        },
+        'receipt_information':{
+            'to' : SateraitoWF.getFormValue(form, 'To'),
+            'attn' : SateraitoWF.getFormValue(form, 'attn'),
+            'company' : SateraitoWF.getFormValue(form, 'company_name')
+        },
         "service_details" : [
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description1'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity1'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price1'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount1')
-            },
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description2'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity2'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price2'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount2')
-            },
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description3'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity3'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price3'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount3')
-            },
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description4'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity4'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price4'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount4')
-            },
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description5'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity5'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price5'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount5')
-            },
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description6'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity6'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price6'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount6')
-            },
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description7'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity7'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price7'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount7')
-            },
-            {
-                "title" : SateraitoWF.getFormValue(form, 'description8'),
-                "invoice_number" : SateraitoWF.getFormValue(form, 'generated_code'),
-                "qty" : SateraitoWF.getFormValue(form, 'quantity8'),
-                "unit_price" : SateraitoWF.getFormValue(form, 'unit_price8'),
-                "amount" : SateraitoWF.getFormValue(form, 'amount8')
-            }
-        ],
-        "remarks": SateraitoWF.getFormValue(form, 'remaks'),
-        "invoice_cervice" : SateraitoWF.getFormValue(form, 'service_dept'),
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description1'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity1'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price1'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount1')
+        },
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description2'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity2'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price2'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount2')
+        },
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description3'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity3'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price3'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount3')
+        },
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description4'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity4'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price4'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount4')
+        },
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description5'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity5'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price5'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount5')
+        },
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description6'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity6'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price6'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount6')
+        },
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description7'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity7'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price7'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount7')
+        },
+        {
+            "title" : SateraitoWF.getFormValue(form, 'description8'),
+            "qty" : SateraitoWF.getFormValue(form, 'quantity8'),
+            "unit_price" : SateraitoWF.getFormValue(form, 'unit_price8'),
+            "amount" : SateraitoWF.getFormValue(form, 'amount8')
+        }],
+        'vat' : SateraitoWF.getFormValue(form, 'vat_percentage'),
+        'wht' : SateraitoWF.getFormValue(form, 'witholding_tax'),
+        'discount' : SateraitoWF.getFormValue(form, 'invoice_discount'),
+        'remarks' : SateraitoWF.getFormValue(form, 'remaks'),
+        'applicant' : SateraitoWF.getFormValue(form, 'author_name'),
+        'department' : SateraitoWF.getFormValue(form, 'Department'),
+        'division' : SateraitoWF.getFormValue(form, 'Division'),
+        'payment_due_date' : SateraitoWF.getFormValue(form, 'payment_due_date'),
+        'grand_total': SateraitoWF.getFormValue(form, 'total_amount'),
+        'service' : SateraitoWF.getFormValue(form, 'service_dept')
     }
-<<<<<<< HEAD
-    console.log(data)
-=======
-    // console.log(data)
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
+    console.log(JSON.stringify(data));
     $.ajax({
         type: 'POST',
-        url: 'https://prod-01.southeastasia.logic.azure.com:443/workflows/ba98eb5945514b869a6384fba395ee40/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BrIlnvoEN1z0mksa2l146eRMrF05zr0CYrPKW5IX4Ks',
+        url: 'https://prod-52.southeastasia.logic.azure.com:443/workflows/e96dadcf8f56491fb282c8f2d005bf72/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pnEt2dE-ShdRppZA86KVOFGlrQtbaSrnnhcxpAtV_oc',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(data),
@@ -372,11 +365,11 @@ function push(){
     });
 }
 
-<<<<<<< HEAD
-=======
-function showLastInvNumber(results){
-    console.log(results[0].attribute_1)
+function showLastInvNumber(){
+    // console.log("results[0].attribute_1 : "+results[0].attribute_1)
 
+    var results =  SateraitoWF.getMasterData('finance_invoice_number');
+    console.log(results);
     var fixnum = results[0].attribute_1.padStart(4, '0')
 
     SateraitoWF.setFormValue(form, 'invoice_number_view', fixnum)
@@ -392,88 +385,126 @@ function showLastInvNumber(results){
     // SateraitoWF.setFormValue(form, 'invoice_number_view', fix_number)
 
 }
+function customRound(number) {
+    var integerPart = Math.floor(number);
+    var decimalPart = number - integerPart;
+
+    if (decimalPart >= 0.5) {
+        return integerPart + 1;
+    } else {
+        return integerPart;
+    }
+}
 
 function updateDiscount(){
     SateraitoWF.setFormValue(form, 'total_amount', null);
 }
 function addService(){
     var service = null;
+    var detCode = null;
     var code = SateraitoWF.getFormValue(form, 'invoice_code')
     switch(code){
-        case "BS/VISA":
+        case "EXE":
+            detCode = "WC/JP/";
+            service = "Recruitment Service";
+            break;
+        case "JP":
+            detCode = "WC/JP/";
+            service = "Recruitment Service";
+            break;
+        case "KOR":
+            detCode = "WC/JP/";
+            service = "Recruitment Service";
+            break;
+        case "OS":
+            detCode = "WC/OSJP/";
+            service = "Recruitment Service";
+            break;
+        case "LG-TR":
+            detCode = "TR";
+            service = "Translation Service";
+            break;
+        case "LG-INT":
+            detCode = "INT";
+            service = "Interpretation Service";
+            break;
+        case "ED-JLMC":
+            detCode = "JLMC";
+            service = "Education";
+            break;
+        case "ED-LC(JP)":
+            detCode = "LC/JP/";
+            service = "Language Course";
+            break;
+        case "AD":
+            detCode = "BC/AD/";
+            service = "Alih Daya Service";
+            break;
+        case "ES-RS":
+            detCode = "BC/RS/"
+            service = "Recruitment Service";
+            break;
+        case "CEBL":
+            detCode = "BS/CEBL/";
             service = "Business License Obtaining Service";
             break;
         case "HRC":
+            detCode = "HRC";
             service = "HR Consulting/ Company Regulation/ Employee Agreement";
             break;
-        case "PSY":
-            service = "Assesment Service";
-            break;
-        case "TR":
-            service = "Translation Service";
-            break;
-        case "INT":
-            service = "Interpretation Service";
-            break;
-        case "TRN":
-            service = "Training";
-            break;
-        case "PAY":
+        case "HRC-PAY":
+            detCode = "PAY";
             service = "Payroll Service";
             break;
-        case "LC/IN/":
-            service = "Language Course";
+        case "HRC-PSY":
+            detCode = "PSY"
+            service = "Assesment Service";
             break;
-        case "WC/OSJP/":
-            service = "Recruitment Service";
+        case "HRC-TRN":
+            detCode = "TRN"
+            service = "Training";
             break;
-        case "WC/JP/":
-            service = "Recruitment Service";
-            break;
-        case "BC/AD/":
-            service = "Alih Daya Service";
-            break;
-        case "BC/OS/":
-            service = "Essential Service";
-            break;
-        case "BC/RS/":
-            service = "Recruitment Service";
-            break;
-        case "KG":
-            service = "Kaigo";
-            break;
-        case "JLMC":
-            service = "Education";
+        case "VISA":
+            service = "Business License Obtaining Service";
+            detCode = "BS/VISA/";
             break;
         case "GJ":
+            detCode = "GJ";
             service = "GINOJISSHUSEI";
             break;
-        case "OT":
-            service = "Other";
+        case "KG":
+            detCode = "KG";
+            service = "Kaigo";
             break;
-        case "RYU":
-            service = "Education Ryugaku";
-        case "LC/JP/":
+        case "LC(IN)":
+            detCode = "LC/IN/";
             service = "Language Course";
             break;
-        case "BS/CEBL/":
-            service = "Business License Obtaining Service";
+        case "OT":
+            detCode = "OT";
+            service = "Other";
             break;
-        case "BS/VISA/":
-            service ="Business License Obtaining Service";
+        case "ESS":
+            detCode = "BC/OS/";
+            service = "Essential Service";
             break;
-        case "EU":
+        case "LOC":
+            detCode = "WC/JP/";
+            service = "Recruitment Service";
+            break;
+        case "EURO":
+            detCode = "EU";
             service = "-";
             break;
+        case "RYU":
+            detCode = "RYU";
+            service = "Education Ryugaku";
         default:
-
-
     }
 
-
+    SateraitoWF.setFormValue(form, 'code_invoice', detCode);
     SateraitoWF.setFormValue(form, 'service_dept', service);
 }
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
 //==========DOCUMENT CONTROL=============//
     var date1_str	= SateraitoWF.getFormValue(form, 'dummy_date');
     var date_obj	= date1_str.split('-');
@@ -512,25 +543,6 @@ function addService(){
     SateraitoWF.hideRouteSelection(form);
 
     var doc_status = SateraitoWF.getDocStatus(form);
-<<<<<<< HEAD
-    console.log('doc_status : '+ doc_status);
-    //default disable invoice date&invoice due date
-    console.log('status = empty');
-    $('.finance_only').css('display','none');
-
-    if(doc_status == 'in_process'){
-        console.log('status = in_process')
-        var processInfos = SateraitoWF.getApproveProcessInfo(form);
-        console.log('processInfos : ' + processInfos[1]);
-        console.log('processInfos status : ' + processInfos[1].status);
-        SateraitoWF.disableFormElement(form,'button_calculate');
-        $(form).find(':input[name=button_calculate]').css('display','none');
-
-        var statusProcess = processInfos[1].status;
-        if(processInfos[1].status == 'in_process' || statusProcess == 'final_approved'){
-            //enable invoice date field
-            $(form).find('.finance_only').css('display','block');
-=======
     var processInfos = SateraitoWF.getApproveProcessInfo(form);
 
 
@@ -589,21 +601,13 @@ function addService(){
                         $(form).find(':input[name=invoice_date]').addClass('mandatory');
                     }
                 });
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
 
-            SateraitoWF.enableFormElement(form, 'invoice_date');
             $(form).find(':input[name=invoice_date]').attr('mandatory_msg','Please select invoice date');
             $(form).find(':input[name=invoice_date]').addClass('mandatory');
 
-<<<<<<< HEAD
-            SateraitoWF.enableFormElement(form, 'payment_due_date');
-            $(form).find(':input[name=payment_due_date]').attr('mandatory_msg','Please select payment due date');
-            $(form).find(':input[name=payment_due_date]').addClass('mandatory');
-=======
             SateraitoWF.enableFormElement(form, 'ex_rate');
             $(form).find(':input[name=ex_rate]').attr('mandatory_msg','Please inser rate ');
             $(form).find(':input[name=ex_rate]').addClass('mandatory');
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
 
             SateraitoWF.enableFormElement(form, 'vat_percentage');
             $(form).find(':input[name=vat_percentage]').attr('mandatory_msg','Please insert vat percentage');
@@ -617,15 +621,6 @@ function addService(){
             $(form).find(':input[name=discount]').attr('mandatory_msg','Please insert discount');
             $(form).find(':input[name=discount]').addClass('mandatory');
 
-<<<<<<< HEAD
-        }else if(processInfos[2].status == 'in_process' || statusProcess == 'final_approved'){
-            $(form).find(':input[name=button_calculate]').css('display','none');
-
-            console.log('pushed');
-            push();
-        }else{
-            $(form).find('.finance_only').css('display','none');
-=======
             // var results =  SateraitoWF.getMasterData('finance_invoice_number');
             // Ext.each(results, function(){
             //     var row = this;
@@ -643,14 +638,8 @@ function addService(){
             //         SateraitoWF.appendUpdateMasterData (form, row.master_code, row.data_key, 'submit', update_data);
             //     }
             // });
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
         }
     }
-    if(doc_status == 'final_approved'){
-        $(form).find('.finance_only').css('display','block');
-    }
-
-
 
     $(form).find(':input[name=invoice_date]').blur(function(){
         var a = SateraitoWF.getFormValue(form, 'invoice_date');
@@ -663,22 +652,14 @@ function addService(){
 
     //onChange Invoice Code Function
     $(form).find(':input[name=invoice_code]').change(function(){
-        var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
-        SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
+        // var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
+        // SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
+        addService();
     });
-<<<<<<< HEAD
-    //set default
-    var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
-    SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
-    generate_code(invoice_code);
-=======
 
     //set default
     // var invoice_code = SateraitoWF.getFormValue(form, 'invoice_code');
     // SateraitoWF.setFormValue(form, 'code_invoice', invoice_code);
     // generate_code(invoice_code);
 
-    var results =  SateraitoWF.getMasterData('finance_invoice_number');
-
-    showLastInvNumber(results);
->>>>>>> 87bfc98b89d0697b23dd3fe40184451165c1650a
+    showLastInvNumber();
