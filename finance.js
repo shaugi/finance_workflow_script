@@ -358,7 +358,9 @@ function push(){
         "grand_total": SateraitoWF.getFormValue(form, "total_amount"),
         "service" : SateraitoWF.getFormValue(form, "service_dept"),
         "document_location" : docURL,
-        "applicant_email" : SateraitoWF.getFormValue(form,"applicant_email")
+        "applicant_email" : SateraitoWF.getFormValue(form,"applicant_email"),
+        "subtotal" : SateraitoWF.getFormValue(form, "sub_total"),
+        "lasInvoiceNumber" : SateraitoWF.getFormValue(form, "invoice_number_view")
     }
     console.log(JSON.stringify(data));
     $.ajax({
