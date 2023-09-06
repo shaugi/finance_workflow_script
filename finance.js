@@ -252,7 +252,7 @@ function calculateTotalAmount(){
 
 
     // Calculate total VAT
-    total_vat = (total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8) + (discount * 0.11);
+    total_vat = (total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8) - (discount * 0.11);
     total_wht = total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 ;
 
     SateraitoWF.setFormValue(form, "witholding_tax", customRound(total_wht));
