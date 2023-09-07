@@ -591,6 +591,7 @@ function addService(){
 
     SateraitoWF.setFormValue(form, "code_invoice", detCode);
     SateraitoWF.setFormValue(form, "service_dept", service);
+
 }
 //==========DOCUMENT CONTROL=============//
     var date1_str	= SateraitoWF.getFormValue(form, "dummy_date");
@@ -655,7 +656,7 @@ function addService(){
             SateraitoWF.enableFormElement(form, "generated_code");
 
             //Generate code on finance approval
-            var invoice_code = SateraitoWF.getFormValue(form, "invoice_code");
+            var invoice_code = SateraitoWF.getFormValue(form, "code_invoice");
             var year = SateraitoWF.getFormValue(form, "dummy_date");
             var invoice_number_view = SateraitoWF.getFormValue(form, "invoice_number_view");
             var fixnum = invoice_number_view.padStart(4, "0")
