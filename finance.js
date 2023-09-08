@@ -770,6 +770,9 @@ function addService(){
     if(SateraitoWF.getViewerUserInfo().email == "muhammad.shaugi@os-selnajaya.com"){
         SateraitoWF.enableFormElement(form, "button_print_invoice");
     }
+    if(SateraitoWF.getViewerUserInfo().email == "ariyani.syahfitri@os-selnajaya.com"){
+        SateraitoWF.enableFormElement(form, "button_print_invoice");
+    }
 
     // if(processInfos.length >1){
     //     if(processInfos[3].status == "passed"){
