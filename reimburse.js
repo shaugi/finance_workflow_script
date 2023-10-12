@@ -1,6 +1,4 @@
 form = SateraitoWF.getForm(document.getElementsByName("workflow_doc_load_handler"));
-let total_vat = 0;
-let total_wht = 0;
 
 //==========FUNCTION=============//
 function service2validator(){
@@ -11,111 +9,9 @@ function service2validator(){
     var description6 = SateraitoWF.getFormValue(form, "description6");
     var description7 = SateraitoWF.getFormValue(form, "description7");
     var description8 = SateraitoWF.getFormValue(form, "description8");
-
-
-    // if(description2.length > 0){
-    //     SateraitoWF.enableFormElement(form, "quantity2");
-    //     SateraitoWF.enableFormElement(form, "unit_price2");
-    //     $(form).find(":input[name=quantity2]").addClass("mandatory");
-    //     $(form).find(":input[name=quantity2]").attr("mandatory_msg","Please insert quantity on number 2");
-    //     $(form).find(":input[name=unit_price2]").addClass("mandatory");
-    //     $(form).find(":input[name=unit_price2]").attr("mandatory_msg","Please insert unit price on number 2");
-    // }
-    // if(description3.length > 0){
-    //     SateraitoWF.enableFormElement(form, "quantity3");
-    //     SateraitoWF.enableFormElement(form, "unit_price3");
-    //     $(form).find(":input[name=quantity3]").addClass("mandatory");
-    //     $(form).find(":input[name=quantity3]").attr("mandatory_msg","Please insert quantity on number 3");
-    //     $(form).find(":input[name=unit_price3]").addClass("mandatory");
-    //     $(form).find(":input[name=unit_price3]").attr("mandatory_msg","Please insert unit price on number 3");
-    // }
-    // if(description4.length > 0){
-    //     SateraitoWF.enableFormElement(form, "quantity4");
-    //     SateraitoWF.enableFormElement(form, "unit_price4");
-    //     $(form).find(":input[name=quantity4]").addClass("mandatory");
-    //     $(form).find(":input[name=quantity4]").attr("mandatory_msg","Please insert quantity on number 4");
-    //     $(form).find(":input[name=unit_price4]").addClass("mandatory");
-    //     $(form).find(":input[name=unit_price4]").attr("mandatory_msg","Please insert unit price on number 4");
-    // }
-    // if(description5.length > 0){
-    //     SateraitoWF.enableFormElement(form, "quantity5");
-    //     SateraitoWF.enableFormElement(form, "unit_price5");
-    //     $(form).find(":input[name=quantity5]").addClass("mandatory");
-    //     $(form).find(":input[name=quantity5]").attr("mandatory_msg","Please insert quantity on number 5");
-    //     $(form).find(":input[name=unit_price5]").addClass("mandatory");
-    //     $(form).find(":input[name=unit_price5]").attr("mandatory_msg","Please insert unit price on number 5");
-    // }
-    // if(description6.length > 0){
-    //     SateraitoWF.enableFormElement(form, "quantity6");
-    //     SateraitoWF.enableFormElement(form, "unit_price6");
-    //     $(form).find(":input[name=quantity6]").addClass("mandatory");
-    //     $(form).find(":input[name=quantity6]").attr("mandatory_msg","Please insert quantity on number 6");
-    //     $(form).find(":input[name=unit_price6]").addClass("mandatory");
-    //     $(form).find(":input[name=unit_price6]").attr("mandatory_msg","Please insert unit price on number 6");
-    // }
-    // if(description7.length > 0){
-    //     SateraitoWF.enableFormElement(form, "quantity7");
-    //     SateraitoWF.enableFormElement(form, "unit_price7");
-    //     $(form).find(":input[name=quantity7]").addClass("mandatory");
-    //     $(form).find(":input[name=quantity7]").attr("mandatory_msg","Please insert quantity on number 7");
-    //     $(form).find(":input[name=unit_price7]").addClass("mandatory");
-    //     $(form).find(":input[name=unit_price7]").attr("mandatory_msg","Please insert unit price on number 7");
-    // }
-    // if(description8.length > 0){
-    //     SateraitoWF.enableFormElement(form, "quantity8");
-    //     SateraitoWF.enableFormElement(form, "unit_price8");
-    //     $(form).find(":input[name=quantity8]").addClass("mandatory");
-    //     $(form).find(":input[name=quantity8]").attr("mandatory_msg","Please insert quantity on number 8");
-    //     $(form).find(":input[name=unit_price8]").addClass("mandatory");
-    //     $(form).find(":input[name=unit_price8]").attr("mandatory_msg","Please insert unit price on number 8");
-    // }
 }
 
-function calculate_vat(numb){
-    var prev = 0;
-    // var total_vat = 0;
-    var qty = "quantity"+numb;
-    var up = "unit_price"+numb;
-    var quantity = SateraitoWF.getFormValue(form, qty);
-    var unit_price = SateraitoWF.getFormValue(form, up);
 
-    var vat = "vat"+numb;
-    var vate = SateraitoWF.getFormValue(form, vat);
-
-
-    if(vat != null){
-        current_vat = ((quantity * unit_price) * (vate / 100));
-        if(current_vat >= prev){
-            prev = current_vat
-            current_vat = 0;
-            total_vat += prev
-        }
-    }
-    // SateraitoWF.setFormValue(form, "vat_percentage", total_vat);
-}
-
-function calculate_wht(numb){
-    var prev = 0;
-    // var total_wht= 0;
-    var qty = "quantity"+numb;
-    var up = "unit_price"+numb;
-    var quantity = SateraitoWF.getFormValue(form, qty);
-    var unit_price = SateraitoWF.getFormValue(form, up);
-
-    var wht = "wht"+numb;
-    var whit = SateraitoWF.getFormValue(form, wht);
-
-
-    if(wht != null){
-        current_wht = ((quantity * unit_price) * (whit / 100));
-        if(current_wht >= prev){
-            prev = current_wht
-            current_wht = 0;
-            total_wht += prev
-        }
-    }
-    // SateraitoWF.setFormValue(form, "witholding_tax", total_wht);
-}
 function calculate_amount(numb){
 
     var qty = "quantity"+numb;
@@ -134,44 +30,6 @@ function calculate_amount(numb){
     SateraitoWF.setFormValue(form, amount, total_amount);
     SateraitoWF.setFormValue(form, "total_amount", "");
 }
-// function calculateTotalAmount() {
-//     var amounts = [];
-//     var qtys = [];
-//     var unitPrices = [];
-//     var whts = [];
-//     var vats = [];
-
-//     var total_vat = 0;
-//     var total_wht = 0;
-
-//     // Populate arrays with form values
-//     for (var i = 1; i <= 8; i++) {
-//         amounts.push(parseInt(SateraitoWF.getFormValue(form, "amount" + i)) || 0);
-//         qtys.push(parseInt(SateraitoWF.getFormValue(form, "quantity" + i)) || 0);
-//         unitPrices.push(SateraitoWF.getFormValue(form, "unit_price" + i));
-//         whts.push(parseFloat(SateraitoWF.getFormValue(form, "wht" + i)) || 0);
-//         vats.push(parseFloat(SateraitoWF.getFormValue(form, "vat" + i)) || 0);
-//     }
-
-//     var discount = parseInt(SateraitoWF.getFormValue(form, "invoice_discount")) || 0;
-
-//     // Calculate total VAT and WHT
-//     for (var i = 0; i < 8; i++) {
-//         total_vat += (qtys[i] * unitPrices[i] * vats[i] / 100);
-//         total_wht += (qtys[i] * unitPrices[i] * whts[i] / 100);
-//     }
-
-//     // Set the calculated totals
-//     SateraitoWF.setFormValue(form, "witholding_tax", total_wht);
-//     SateraitoWF.setFormValue(form, "vat_percentage", total_vat);
-
-//     // Calculate and set the total amount
-//     var total = amounts.reduce(function (acc, cur) {
-//         return acc + cur;
-//     }, 0) - discount;
-
-//     SateraitoWF.setFormValue(form, "total_amount", total);
-// }
 
 
 function calculateTotalAmount(){
@@ -213,77 +71,15 @@ function calculateTotalAmount(){
     var up7 = SateraitoWF.getFormValue(form,"unit_price7");
     var up8 = SateraitoWF.getFormValue(form,"unit_price8");
 
-    var wht1 = SateraitoWF.getFormValue(form, "wht1");
-    var wht2 = SateraitoWF.getFormValue(form, "wht2");
-    var wht3 = SateraitoWF.getFormValue(form, "wht3");
-    var wht4 = SateraitoWF.getFormValue(form, "wht4");
-    var wht5 = SateraitoWF.getFormValue(form, "wht5");
-    var wht6 = SateraitoWF.getFormValue(form, "wht6");
-    var wht7 = SateraitoWF.getFormValue(form, "wht7");
-    var wht8 = SateraitoWF.getFormValue(form, "wht8");
-
-    var vat1 = SateraitoWF.getFormValue(form, "vat1");
-    var vat2 = SateraitoWF.getFormValue(form, "vat2");
-    var vat3 = SateraitoWF.getFormValue(form, "vat3");
-    var vat4 = SateraitoWF.getFormValue(form, "vat4");
-    var vat5 = SateraitoWF.getFormValue(form, "vat5");
-    var vat6 = SateraitoWF.getFormValue(form, "vat6");
-    var vat7 = SateraitoWF.getFormValue(form, "vat7");
-    var vat8 = SateraitoWF.getFormValue(form, "vat8");
-
-
-    var total_vat1 = ((qty1 * up1) * (vat1 / 100));
-    var total_vat2 = ((qty2 * up2) * (vat2 / 100));
-    var total_vat3 = ((qty3 * up3) * (vat3 / 100));
-    var total_vat4 = ((qty4 * up4) * (vat4 / 100));
-    var total_vat5 = ((qty5 * up5) * (vat5 / 100));
-    var total_vat6 = ((qty6 * up6) * (vat6 / 100));
-    var total_vat7 = ((qty7 * up7) * (vat7 / 100));
-    var total_vat8 = ((qty8 * up8) * (vat8 / 100));
-
-    var total_wht1 = ((qty1 * up1) * (wht1 / 100));
-    var total_wht2 = ((qty2 * up2) * (wht2 / 100));
-    var total_wht3 = ((qty3 * up3) * (wht3 / 100));
-    var total_wht4 = ((qty4 * up4) * (wht4 / 100));
-    var total_wht5 = ((qty5 * up5) * (wht5 / 100));
-    var total_wht6 = ((qty6 * up6) * (wht6 / 100));
-    var total_wht7 = ((qty7 * up7) * (wht7 / 100));
-    var total_wht8 = ((qty8 * up8) * (wht8 / 100));
-
-
-    // Calculate total VAT
-
-    var calculate_vat = (total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8);
-    if(calculate_vat == 0){
-        total_vat = 0;
-    }else{
-        total_vat = (total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8) - (discount * 0.11);
-    }
-
-    var calculate_wht = total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8
-    if(calculate_wht = 0){
-        total_wht = 0;
-    }
-    else{
-        total_wht = (total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8) - (discount * 0.02);
-    }
-
-
-    SateraitoWF.setFormValue(form, "witholding_tax", customRound(total_wht));
-    SateraitoWF.setFormValue(form, "vat_percentage", customRound(total_vat));
 
     var sub_total = (amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 - discount);
-    var total = (amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 - discount + customRound(total_wht) - customRound(total_vat));
+    var total = (amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 - discount);
     SateraitoWF.setFormValue(form, "sub_total", sub_total);
 
-    var grand_total = sub_total + customRound(total_vat) - customRound(total_wht);
+    var grand_total = sub_total;
 
 
     SateraitoWF.setFormValue(form, "total_amount", grand_total);
-}
-//GENERATE CODE & APPLICATION NUMBER
-function generate_code(invoice_code){
-    //nanti aja
 }
 
 //PUSH TO POWERAUTOMATE
@@ -467,23 +263,12 @@ function formatDate(inputDate) {
   }
 
 function showLastInvNumber(){
-    // console.log("results[0].attribute_1 : "+results[0].attribute_1)
 
     var results =  SateraitoWF.getMasterData("finance_invoice_number");
     console.log(results);
     var fixnum = results[0].attribute_1.padStart(5, "0")
 
     SateraitoWF.setFormValue(form, "invoice_number_view", fixnum)
-
-    // Ext.each(results, function(){
-    //     // console.log(this.attribute_1);
-    //     // console.log(JSON.stringify(this))
-    //     // var fixnum = String(this.attribute_1).padStart(4, "0")
-    //     var fixnum = results[0].attribute_1.padStart(4, "0")
-    //     fix_number = fixnum;
-
-    // });
-    // SateraitoWF.setFormValue(form, "invoice_number_view", fix_number)
 
 }
 function customRound(number) {
@@ -673,7 +458,7 @@ function addService(){
             var invoice_code = SateraitoWF.getFormValue(form, "code_invoice");
             var year = SateraitoWF.getFormValue(form, "dummy_date");
             var invoice_number_view = SateraitoWF.getFormValue(form, "invoice_number_view");
-            var fixnum = invoice_number_view.padStart(4, "0")
+            var fixnum = invoice_number_view.padStart(5, "0")
             year = year.slice(2,-6);
             SateraitoWF.setFormValue(form, "REIM", invoice_code+year+fixnum+"OSL");
 
@@ -684,13 +469,6 @@ function addService(){
             var description6 = SateraitoWF.getFormValue(form, "description6");
             var description7 = SateraitoWF.getFormValue(form, "description7");
             var description8 = SateraitoWF.getFormValue(form, "description8");
-
-            for(i = 1; i<=8; i++){
-                vat = "vat"+i;
-                wht = "wht"+i;
-                SateraitoWF.enableFormElement(form, vat);
-                SateraitoWF.enableFormElement(form, wht);
-            }
 
             $(form).find(":input[name=total_amount]").attr("mandatory_msg","Please select invoice date");
             $(form).find(":input[name=total_amount]").addClass("mandatory");
@@ -722,24 +500,6 @@ function addService(){
             SateraitoWF.enableFormElement(form, "discount");
             $(form).find(":input[name=discount]").attr("mandatory_msg","Please insert discount");
             $(form).find(":input[name=discount]").addClass("mandatory");
-
-            // var results =  SateraitoWF.getMasterData("finance_invoice_number");
-            // Ext.each(results, function(){
-            //     var row = this;
-            //     if (row.data_key == 1){
-            //         var currentnumber =  parseInt(row.attribute_1);
-            //         console.log("currentnumber : "+currentnumber);
-            //         var row = this;
-            //         console.log(JSON.stringify(row))
-
-            //         var update_number = parseInt(currentnumber) + 1;
-
-            //         var update_data = {
-            //             attribute_1: update_number
-            //         };
-            //         SateraitoWF.appendUpdateMasterData (form, row.master_code, row.data_key, "submit", update_data);
-            //     }
-            // });
         }
     }
 
@@ -754,17 +514,9 @@ function addService(){
 
     //onChange Invoice Code Function
     $(form).find(":input[name=invoice_code]").change(function(){
-        // var invoice_code = SateraitoWF.getFormValue(form, "invoice_code");
-        // SateraitoWF.setFormValue(form, "code_invoice", invoice_code);
         addService();
     });
 
-    //set default
-    // var invoice_code = SateraitoWF.getFormValue(form, "invoice_code");
-    // SateraitoWF.setFormValue(form, "code_invoice", invoice_code);
-    // generate_code(invoice_code);
-
-    // showLastInvNumber();
     SateraitoWF.disableFormElement(form, "button_print_invoice");
     $(form).find(":input[name=button_print_invoice]").css("display","none");
 
@@ -776,10 +528,3 @@ function addService(){
         SateraitoWF.enableFormElement(form, "button_print_invoice");
         $(form).find(":input[name=button_print_invoice]").css("display","block");
     }
-
-    // if(processInfos.length >1){
-    //     if(processInfos[3].status == "passed"){
-    //         SateraitoWF.enableFormElement(form, "button_print_invoice");
-
-    //     }
-    // }
