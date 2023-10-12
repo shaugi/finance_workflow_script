@@ -766,12 +766,15 @@ function addService(){
 
     // showLastInvNumber();
     SateraitoWF.disableFormElement(form, "button_print_invoice");
+    $(form).find(":input[name=button_print_invoice]").css("display","none");
 
     if(SateraitoWF.getViewerUserInfo().email == "muhammad.shaugi@os-selnajaya.com"){
         SateraitoWF.enableFormElement(form, "button_print_invoice");
+        $(form).find(":input[name=button_print_invoice]").css("display","block");
     }
     if(SateraitoWF.getViewerUserInfo().email == "ariyani.syahfitri@os-selnajaya.com"){
         SateraitoWF.enableFormElement(form, "button_print_invoice");
+        $(form).find(":input[name=button_print_invoice]").css("display","block");
     }
 
     // if(processInfos.length >1){
