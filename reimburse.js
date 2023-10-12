@@ -471,7 +471,7 @@ function showLastInvNumber(){
 
     var results =  SateraitoWF.getMasterData("finance_invoice_number");
     console.log(results);
-    var fixnum = results[0].attribute_1.padStart(4, "0")
+    var fixnum = results[0].attribute_1.padStart(5, "0")
 
     SateraitoWF.setFormValue(form, "invoice_number_view", fixnum)
 
