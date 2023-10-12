@@ -603,8 +603,8 @@ function addService(){
         default:
     }
 
-    SateraitoWF.setFormValue(form, "code_invoice", detCode);
-    SateraitoWF.setFormValue(form, "service_dept", service);
+    SateraitoWF.setFormValue(form, "code_invoice", "REIM");
+    SateraitoWF.setFormValue(form, "service_dept", "Reimbursement");
 
 }
 //==========DOCUMENT CONTROL=============//
