@@ -460,7 +460,7 @@ function addService(){
             var invoice_number_view = SateraitoWF.getFormValue(form, "invoice_number_view");
             var fixnum = invoice_number_view.padStart(5, "0")
             year = year.slice(2,-6);
-            SateraitoWF.setFormValue(form, "generated_code", invoice_code+year+fixnum+"OSL");
+            SateraitoWF.setFormValue(form, "generated_code", invoice_code+"/"+year+fixnum+"OSL");
 
             var description2 = SateraitoWF.getFormValue(form, "description2");
             var description3 = SateraitoWF.getFormValue(form, "description3");
