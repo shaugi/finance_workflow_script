@@ -175,7 +175,7 @@ function push(){
     console.log(JSON.stringify(data));
     $.ajax({
         type: "POST",
-        url: "https://prod-52.southeastasia.logic.azure.com:443/workflows/e96dadcf8f56491fb282c8f2d005bf72/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pnEt2dE-ShdRppZA86KVOFGlrQtbaSrnnhcxpAtV_oc",
+        url: "https://prod-15.southeastasia.logic.azure.com:443/workflows/6b1565fee7ab42849be350ae0b7da26f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uvo8qOWCAznskuS22rPulmFm3i0fnkNfugWsCyJiTXQ",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(data),
