@@ -776,7 +776,19 @@ function addService(){
         SateraitoWF.enableFormElement(form, "button_print_invoice");
         $(form).find(":input[name=button_print_invoice]").css("display","block");
     }
+    SateraitoWF.disableFormElement(form, "button_print_invoice");
 
+    $.ajax({
+        type: "POST",
+        url: "https://prod-28.southeastasia.logic.azure.com:443/workflows/6f2a823d99c14a0ba2fb8a12fbc6fd8d/triggers/manual/paths/invoke?api-version=2016-06-01",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(success){
+            console.log(success);},
+        error: function(errMsg) {
+            console.log(errMsg);
+        }
+    });
     // if(processInfos.length >1){
     //     if(processInfos[3].status == "passed"){
     //         SateraitoWF.enableFormElement(form, "button_print_invoice");
