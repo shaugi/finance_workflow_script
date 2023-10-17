@@ -281,10 +281,6 @@ function calculateTotalAmount(){
 
     SateraitoWF.setFormValue(form, "total_amount", grand_total);
 }
-//GENERATE CODE & APPLICATION NUMBER
-function generate_code(invoice_code){
-    //nanti aja
-}
 
 //PUSH TO POWERAUTOMATE
 function push(){
@@ -391,8 +387,6 @@ function push(){
     });
 }
 
-
-
 function createInvoice(){
     var data =
     {
@@ -442,7 +436,6 @@ function createInvoice(){
         "grand_total": parseInt(SateraitoWF.getFormValue(form, "total_amount")),
         "service" : SateraitoWF.getFormValue(form, "service_dept")
     }
-    console.log(JSON.stringify(data));
     $.ajax({
         type: "POST",
         url: "https://prod-29.southeastasia.logic.azure.com:443/workflows/94f5b8b53d984fb3917ec9f2fe1f8706/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vj76isFXn9SkyC9RNGcmwkbyFWix0FMq1j-ixiMpbYE",
@@ -450,7 +443,10 @@ function createInvoice(){
         dataType: "json",
         data: JSON.stringify(data),
         success: function(success){
-            console.log(success);},
+            console.log(success)
+            SateraitoWF.alert("Invoice Generated");
+            SateraitoWF.disableFormElement(form, "button_print_invoice");
+        ;},
         error: function(errMsg) {
             console.log(errMsg);
         }
@@ -464,7 +460,7 @@ function formatDate(inputDate) {
     const day = parts[2];
 
     return `${month}/${day}/${year}`;
-  }
+}
 
 function showLastInvNumber(){
     // console.log("results[0].attribute_1 : "+results[0].attribute_1)
@@ -486,6 +482,7 @@ function showLastInvNumber(){
     // SateraitoWF.setFormValue(form, "invoice_number_view", fix_number)
 
 }
+
 function customRound(number) {
     var integerPart = Math.floor(number);
     var decimalPart = number - integerPart;
@@ -500,6 +497,7 @@ function customRound(number) {
 function updateDiscount(){
     SateraitoWF.setFormValue(form, "total_amount", null);
 }
+
 function addService(){
     var service = null;
     var detCode = null;
@@ -606,6 +604,31 @@ function addService(){
     SateraitoWF.setFormValue(form, "code_invoice", detCode);
     SateraitoWF.setFormValue(form, "service_dept", service);
 
+}
+
+function checkButtonPrint(invoice_code){
+    if( invoice_code != "")
+    {
+        $.ajax({
+            type: "POST",
+            url: "https://prod-28.southeastasia.logic.azure.com:443/workflows/6f2a823d99c14a0ba2fb8a12fbc6fd8d/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_1viquO4KeYu0Nq4hkT5yyFesPrL5UEk4jDd1kf5PUQ",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({"code" : invoice_code}),
+            timeout: 30000,
+            success: function(success) {
+                if (!success){
+                    SateraitoWF.enableFormElement(form, "button_print_invoice");
+                }
+            },
+            error: function(errMsg) {
+                console.log(errMsg);
+            },
+            complete: function() {
+                console.log("Request completed, whether successful or not.");
+            }
+        });
+    }
 }
 //==========DOCUMENT CONTROL=============//
     var date1_str	= SateraitoWF.getFormValue(form, "dummy_date");
@@ -778,23 +801,14 @@ function addService(){
     }
     SateraitoWF.disableFormElement(form, "button_print_invoice");
 
-    var checkPrintButtonVar = {"code" : SateraitoWF.getFormValue(form, "generated_code")}
-    $.ajax({
-        type: "POST",
-        url: "https://prod-28.southeastasia.logic.azure.com:443/workflows/6f2a823d99c14a0ba2fb8a12fbc6fd8d/triggers/manual/paths/invoke?api-version=2016-06-01",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        data: JSON.stringify(checkPrintButtonVar),
-        success: function(success){
-            console.log(success);},
-        error: function(errMsg) {
-            console.log(errMsg);
-        }
-    });
+    var invoice_code = SateraitoWF.getFormValue(form, "generated_code");
+
+    checkButtonPrint(invoice_code);
+
+
     // if(processInfos.length >1){
     //     if(processInfos[3].status == "passed"){
     //         SateraitoWF.enableFormElement(form, "button_print_invoice");
 
     //     }
     // }
-
