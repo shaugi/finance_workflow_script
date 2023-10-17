@@ -778,11 +778,13 @@ function addService(){
     }
     SateraitoWF.disableFormElement(form, "button_print_invoice");
 
+    var checkPrintButtonVar = {"code" : SateraitoWF.getFormValue(form, "generated_code")}
     $.ajax({
         type: "POST",
         url: "https://prod-28.southeastasia.logic.azure.com:443/workflows/6f2a823d99c14a0ba2fb8a12fbc6fd8d/triggers/manual/paths/invoke?api-version=2016-06-01",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
+        data: JSON.stringify(checkPrintButtonVar),
         success: function(success){
             console.log(success);},
         error: function(errMsg) {
