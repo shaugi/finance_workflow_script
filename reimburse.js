@@ -553,5 +553,5 @@ function checkButtonPrint(invoice_code){
         $(form).find(":input[name=button_print_invoice]").css("display","block");
     }
     var invoice_code = SateraitoWF.getFormValue(form, "generated_code");
-
+    SateraitoWF.disableFormElement(form, "button_print_invoice");
     checkButtonPrint(invoice_code);
