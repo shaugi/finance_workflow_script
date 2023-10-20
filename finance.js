@@ -261,7 +261,7 @@ function calculateTotalAmount(){
     }
 
     var calculate_wht = total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8
-    if(calculate_wht = 0){
+    if(calculate_wht == 0){
         total_wht = 0;
     }
     else{
