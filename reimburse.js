@@ -392,6 +392,7 @@ function addService(){
     SateraitoWF.setFormValue(form, "service_dept", "Reimbursement");
 
 }
+console.log("asdhausgdi")
 function checkButtonPrint(invoice_code){
     if( invoice_code != "")
     {
@@ -403,6 +404,7 @@ function checkButtonPrint(invoice_code){
             data: JSON.stringify({"code" : invoice_code}),
             timeout: 30000,
             success: function(success) {
+                console.log(success);
                 if (!success){
                     SateraitoWF.enableFormElement(form, "button_print_invoice");
                 }
