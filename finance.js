@@ -434,7 +434,8 @@ function createInvoice(){
         "remarks" : SateraitoWF.getFormValue(form, "remaks"),
         "payment_due_date" : SateraitoWF.getFormValue(form, "payment_due_date"),
         "grand_total": parseInt(SateraitoWF.getFormValue(form, "total_amount")),
-        "service" : SateraitoWF.getFormValue(form, "service_dept")
+        "service" : SateraitoWF.getFormValue(form, "service_dept"),
+        "currency" : SateraitoWF.getFormValue(form, "curency")
     }
     $.ajax({
         type: "POST",
