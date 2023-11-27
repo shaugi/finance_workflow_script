@@ -463,13 +463,25 @@ function formatDate(inputDate) {
 }
 
 function showLastInvNumber(){
-    // console.log("results[0].attribute_1 : "+results[0].attribute_1)
 
-    var results =  SateraitoWF.getMasterData("finance_invoice_number");
-    console.log(results);
-    var fixnum = results[0].attribute_1.padStart(4, "0")
+    // SateraitoWF.setFormValue(form, 'generated_code','');
 
-    SateraitoWF.setFormValue(form, "invoice_number_view", fixnum)
+    var data_key = 1;
+    SateraitoWF.requestMasterDataRow('finance_invoice_number', data_key, function(aRow){
+        if(typeof(aRow) != 'undefined' && typeof(aRow.data_key) != 'undefined'){
+            var fixnum = aRow.attribute_1.padStart(5, '0')
+            SateraitoWF.setFormValue(form, 'invoice_number_view', fixnum);
+        }else{
+            SateraitoWF.setFormValue(form, 'invoice_number_view', '');
+        }
+    });
+
+    // var results =  SateraitoWF.getMasterData("finance_invoice_number");
+    // console.log(results);
+    // var fixnum = results[0].attribute_1.padStart(4, "0")
+
+    // console.log(fixnum)
+    // SateraitoWF.setFormValue(form, "invoice_number_view", fixnum)
 
     // Ext.each(results, function(){
     //     // console.log(this.attribute_1);
@@ -693,12 +705,25 @@ function checkButtonPrint(invoice_code){
             SateraitoWF.enableFormElement(form, "generated_code");
 
             //Generate code on finance approval
-            var invoice_code = SateraitoWF.getFormValue(form, "code_invoice");
-            var year = SateraitoWF.getFormValue(form, "dummy_date");
-            var invoice_number_view = SateraitoWF.getFormValue(form, "invoice_number_view");
-            var fixnum = invoice_number_view.padStart(4, "0")
-            year = year.slice(2,-6);
-            SateraitoWF.setFormValue(form, "generated_code", invoice_code+year+fixnum+"OSL");
+
+            var data_key = 1;
+            var textnumber = null;
+            SateraitoWF.requestMasterDataRow('finance_invoice_number', data_key, function(aRow){
+                if(typeof(aRow) != 'undefined' && typeof(aRow.data_key) != 'undefined'){
+                    var fixnum = aRow.attribute_1.padStart(5, '0');
+                    var invoice_code = SateraitoWF.getFormValue(form, "code_invoice");
+                    var year = SateraitoWF.getFormValue(form, "dummy_date");
+                    year = year.slice(2,-6);
+                    SateraitoWF.setFormValue(form, 'invoice_number_view', fixnum);
+                    SateraitoWF.setFormValue(form, "generated_code", invoice_code+year+fixnum+"OSL");
+                    console.log(invoice_code+year+fixnum+"OSL");
+                }else{
+                    SateraitoWF.setFormValue(form, 'invoice_number_view', '');
+                }
+            });
+
+
+
 
             var description2 = SateraitoWF.getFormValue(form, "description2");
             var description3 = SateraitoWF.getFormValue(form, "description3");
@@ -766,14 +791,14 @@ function checkButtonPrint(invoice_code){
         }
     }
 
-    $(form).find(":input[name=invoice_date]").blur(function(){
-        var a = SateraitoWF.getFormValue(form, "invoice_date");
-        if (a == null || a == "" ){
-            $(form).find(":input[name=invoice_date]").attr("mandatory_msg","Please select invoice date");
-            $(form).find(":input[name=invoice_date]").addClass("mandatory");
-            SateraitoWF.alert("Before you approve, make sure you include the invoice date.")
-        }
-    });
+    // $(form).find(":input[name=invoice_date]").blur(function(){
+    //     var a = SateraitoWF.getFormValue(form, "invoice_date");
+    //     if (a == null || a == "" ){
+    //         $(form).find(":input[name=invoice_date]").attr("mandatory_msg","Please select invoice date");
+    //         $(form).find(":input[name=invoice_date]").addClass("mandatory");
+    //         SateraitoWF.alert("Before you approve, make sure you include the invoice date.")
+    //     }
+    // });
 
     //onChange Invoice Code Function
     $(form).find(":input[name=invoice_code]").change(function(){
