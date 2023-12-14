@@ -575,10 +575,13 @@ function checkButtonPrint(invoice_code){
     var doc_status = SateraitoWF.getDocStatus(form);
     var processInfos = SateraitoWF.getApproveProcessInfo(form);
 
-    if(processInfos[3].status!=""){
-        createInvoice();
-        console.log("invoice_created");
+    if(doc_status != ''){
+        if(processInfos[3].status!=""){
+            createInvoice();
+            console.log("invoice_created");
+        }
     }
+
     console.log(doc_status)
     console.log(processInfos);
     //DOCUMENT STATUS = CREATE NEW
