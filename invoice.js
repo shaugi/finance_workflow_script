@@ -72,8 +72,13 @@ function calculate_amount(numb){
 
 
     var total_amount = (quantity * unit_price);
+
+    var currency =  SateraitoWF.getFormValue(form, "curency");
+    if(currency != "USD"){
+        total_amount = customRound(total_amount);
+    }
     console.log(total_amount)
-    total_amount = customRound(total_amount);
+
     SateraitoWF.setFormValue(form, amount, total_amount);
     SateraitoWF.setFormValue(form, "total_amount", "");
 }
