@@ -273,7 +273,8 @@ function push(){
         "document_location" : docURL,
         "applicant_email" : SateraitoWF.getFormValue(form,"applicant_email"),
         "subtotal" : SateraitoWF.getFormValue(form, "sub_total"),
-        "lasInvoiceNumber" : SateraitoWF.getFormValue(form, "invoice_number_view")
+        "lasInvoiceNumber" : SateraitoWF.getFormValue(form, "invoice_number_view"),
+        "detail_invoice" : SateraitoWF.getFormValue(form, "detail_invoice")
     }
     console.log(JSON.stringify(data));
     $.ajax({
