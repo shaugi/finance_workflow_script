@@ -658,6 +658,7 @@ function calculate_not_dpp() {
             SateraitoWF.enableFormElement(form, "ex_rate");
             SateraitoWF.enableFormElement(form, "generated_code");
             SateraitoWF.enableFormElement(form, "detail_invoice");
+            SateraitoWF.enableFormElement(form, "kode_faktur");
 
             //Generate code on finance approval
 
