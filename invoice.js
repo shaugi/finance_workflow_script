@@ -547,7 +547,7 @@ function checkButtonPrint(invoice_code){
         });
     }
 }
-function calculate_not_dpp2() {
+function calculate_not_dpp() {
     var a = 0;
 
     function isBothEmpty(wht, vat) {
