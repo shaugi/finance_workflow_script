@@ -547,47 +547,76 @@ function checkButtonPrint(invoice_code){
         });
     }
 }
-function calculate_not_dpp() {
+function calculate_not_dpp2() {
     var a = 0;
 
     function isBothEmpty(wht, vat) {
         return wht === "" && vat === "";
     }
 
+    function isAmountNotEmpty(amount) {
+        return amount !== "";
+    }
+
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht1"), SateraitoWF.getFormValue(form, "vat1"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount1"));
+        var amount = SateraitoWF.getFormValue(form, "amount1");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht2"), SateraitoWF.getFormValue(form, "vat2"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount2"));
+        var amount = SateraitoWF.getFormValue(form, "amount2");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht3"), SateraitoWF.getFormValue(form, "vat3"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount3"));
+        var amount = SateraitoWF.getFormValue(form, "amount3");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht4"), SateraitoWF.getFormValue(form, "vat4"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount4"));
+        var amount = SateraitoWF.getFormValue(form, "amount4");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht5"), SateraitoWF.getFormValue(form, "vat5"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount5"));
+        var amount = SateraitoWF.getFormValue(form, "amount5");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht6"), SateraitoWF.getFormValue(form, "vat6"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount6"));
+        var amount = SateraitoWF.getFormValue(form, "amount6");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht7"), SateraitoWF.getFormValue(form, "vat7"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount7"));
+        var amount = SateraitoWF.getFormValue(form, "amount7");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     if (isBothEmpty(SateraitoWF.getFormValue(form, "wht8"), SateraitoWF.getFormValue(form, "vat8"))) {
-        a += parseFloat(SateraitoWF.getFormValue(form, "amount8"));
+        var amount = SateraitoWF.getFormValue(form, "amount8");
+        if (isAmountNotEmpty(amount)) {
+            a += parseFloat(amount);
+        }
     }
 
     return a
 }
+
 //==========DOCUMENT CONTROL=============//
     var date1_str	= SateraitoWF.getFormValue(form, "dummy_date");
     var date_obj	= date1_str.split("-");
