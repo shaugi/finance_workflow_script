@@ -292,7 +292,8 @@ function push(){
         "lasInvoiceNumber" : SateraitoWF.getFormValue(form, "invoice_number_view"),
         "detail_invoice" : SateraitoWF.getFormValue(form, "detail_invoice"),
         "not_dpp" : calculate_not_dpp(),
-        "kode_faktur" : SateraitoWF.getFormValue(form, "kode_faktur")
+        "kode_faktur" : SateraitoWF.getFormValue(form, "kode_faktur"),
+        "rate_faktur_pajak" : SateraitoWF.getFormValue(form, "rate_faktur_pajak")
     }
     console.log(JSON.stringify(data));
     $.ajax({
@@ -679,7 +680,7 @@ function calculate_not_dpp() {
     }else if(doc_status == "in_process"){
         var processInfos = SateraitoWF.getApproveProcessInfo(form);
         if(processInfos[2].status == "in_process"){
-            console.log("hayu atuh")
+            console.log("Push to PowerAutomate")
             SateraitoWF.enableFormElement(form, "cost_idr");
             SateraitoWF.enableFormElement(form, "cost_usd");
             SateraitoWF.enableFormElement(form, "cost_sgd");
@@ -688,6 +689,7 @@ function calculate_not_dpp() {
             SateraitoWF.enableFormElement(form, "generated_code");
             SateraitoWF.enableFormElement(form, "detail_invoice");
             SateraitoWF.enableFormElement(form, "kode_faktur");
+            SateraitoWF.enableFormElement(form, "rate_faktur_pajak");
 
             //Generate code on finance approval
 
@@ -783,4 +785,4 @@ function calculate_not_dpp() {
 
     //disable invoice detail
     SateraitoWF.disableFormElement(form, "invoice_detail");
-    console.log("update 9/1/2024");
+    console.log("update 18/1/2024");
