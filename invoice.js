@@ -82,6 +82,7 @@ function calculate_amount(numb){
     SateraitoWF.setFormValue(form, amount, total_amount);
     SateraitoWF.setFormValue(form, "total_amount", "");
 }
+// console.log("local")
 
 function calculateTotalAmount(){
     var amount1 = SateraitoWF.getFormValue(form, "amount1");
@@ -182,7 +183,12 @@ function calculateTotalAmount(){
     if(calculate_vat == 0){
         total_vat = 0;
     }else{
-        total_vat = (total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8 + total_vat9 + total_vat10) - (discount * 0.11);
+        total_vat_cek = (total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8 + total_vat9 + total_vat10) - (discount * 0.11);
+        if((discount*0.11) > total_vat_cek){
+            total_vat = total_vat_cek + (discount*0.11);
+        }else{
+            total_vat = total_vat_cek
+        }
     }
 
     var calculate_wht = total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 + total_wht9 + total_wht10
@@ -190,14 +196,19 @@ function calculateTotalAmount(){
         total_wht = 0;
     }
     else{
-        total_wht = (total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 + total_wht9 + total_wht10) - (discount * 0.02);
+        total_wht_cek = (total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 + total_wht9 + total_wht10) - (discount * 0.02);
+        if((discount*0.02) > total_wht_cek){
+            total_wht = total_wht_cek + (discount*0.02);
+        }else{
+            total_wht = total_wht_cek;
+        }
     }
 
 
     var currency =  SateraitoWF.getFormValue(form, "curency");
     if(currency != "USD"){
-        SateraitoWF.setFormValue(form, "witholding_tax", customRound(total_wht));
-        SateraitoWF.setFormValue(form, "vat_percentage", customRound(total_vat));
+        SateraitoWF.setFormValue(form, "witholding_tax", total_wht);
+        SateraitoWF.setFormValue(form, "vat_percentage", total_vat);
     }else{
         SateraitoWF.setFormValue(form, "witholding_tax", total_wht);
         SateraitoWF.setFormValue(form, "vat_percentage", total_vat);
@@ -209,7 +220,7 @@ function calculateTotalAmount(){
     SateraitoWF.setFormValue(form, "sub_total", sub_total);
 
     if(currency != "USD"){
-        var grand_total = sub_total + customRound(total_vat) - customRound(total_wht);
+        var grand_total = sub_total + total_vat - total_wht;
     }else{
         var grand_total = sub_total + total_vat - total_wht;
     }
