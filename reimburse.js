@@ -143,6 +143,9 @@ function push(){
             "unit_price" : SateraitoWF.getFormValue(form, "unit_price10"),
             "amount" : SateraitoWF.getFormValue(form, "amount10")
         }],
+        "vat" : "0",
+        "wht" : "0",
+        "discount" : SateraitoWF.getFormValue(form, "invoice_discount"),
         "remarks" : SateraitoWF.getFormValue(form, "remaks"),
         "applicant" : SateraitoWF.getFormValue(form, "author_name"),
         "department" : SateraitoWF.getFormValue(form, "Department"),
@@ -154,12 +157,15 @@ function push(){
         "applicant_email" : SateraitoWF.getFormValue(form,"applicant_email"),
         "subtotal" : SateraitoWF.getFormValue(form, "sub_total"),
         "lasInvoiceNumber" : SateraitoWF.getFormValue(form, "invoice_number_view"),
-        "detail_invoice" : SateraitoWF.getFormValue(form, "detail_invoice")
+        "detail_invoice" : SateraitoWF.getFormValue(form, "detail_invoice"),
+        "not_dpp" : '',
+        "kode_faktur" : SateraitoWF.getFormValue(form, "kode_faktur"),
+        "rate_faktur_pajak" : SateraitoWF.getFormValue(form, "rate_faktur_pajak")
     }
     console.log(JSON.stringify(data));
     $.ajax({
         type: "POST",
-        url: "https://prod-24.southeastasia.logic.azure.com:443/workflows/2b89ed781a264a2a9f9f83dc025eb69b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=gxmXM_kVQb9cyq3H5e6zhqQVYJ5FYXEJ8mfiXI1_29o",
+        url: "https://prod-56.southeastasia.logic.azure.com:443/workflows/36e3c5cf01824928aee0481ba914837f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=eciMcgugcNiX5ONohZmbpvJYu3WUy6GwI6l9RCOANsY",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(data),
