@@ -540,7 +540,7 @@ function addService(){
             detCode = "HT";
             service = "Kaigo";
             break;
-        case "LC(IN)":
+        case "LC/IN/":
             detCode = "LC/IN/";
             service = "Language Course";
             break;
@@ -556,7 +556,7 @@ function addService(){
             detCode = "WC/JP/";
             service = "Recruitment Service";
             break;
-        case "EURO":
+        case "EU":
             detCode = "EU";
             service = "-";
             break;
