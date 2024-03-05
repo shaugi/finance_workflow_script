@@ -273,7 +273,7 @@ function push() {
 
   $.ajax({
     type: 'POST',
-    url: 'https://prod-52.southeastasia.logic.azure.com:443/workflows/e96dadcf8f56491fb282c8f2d005bf72/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pnEt2dE-ShdRppZA86KVOFGlrQtbaSrnnhcxpAtV_oc',
+    url: "https://prod-56.southeastasia.logic.azure.com:443/workflows/36e3c5cf01824928aee0481ba914837f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=eciMcgugcNiX5ONohZmbpvJYu3WUy6GwI6l9RCOANsY",
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
     data: JSON.stringify(data),
@@ -367,7 +367,7 @@ function createInvoice() {
   };
   $.ajax({
     type: 'POST',
-    url: 'https://prod-29.southeastasia.logic.azure.com:443/workflows/94f5b8b53d984fb3917ec9f2fe1f8706/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vj76isFXn9SkyC9RNGcmwkbyFWix0FMq1j-ixiMpbYE',
+    url: "https://prod-44.southeastasia.logic.azure.com:443/workflows/b3ad745f018e444b9f77000d03c0aadc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=zAI12m86rp0cSCMekH1FrZwDq8S27AxTjSDIOMSwEQo",
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
     data: JSON.stringify(data),
@@ -517,8 +517,9 @@ function addService() {
   console.log(detCode);
   console.log(service);
 
-  SateraitoWF.setFormValue(form, 'code_invoice', detCode);
-  SateraitoWF.setFormValue(form, 'service_dept', service);
+
+  SateraitoWF.setFormValue(form, "code_invoice", "REIM");
+  SateraitoWF.setFormValue(form, "service_dept", "Reimbursement");
 }
 
 function checkButtonPrint(invoice_code) {
@@ -691,7 +692,6 @@ if (doc_status == '') {
       SateraitoWF.enableFormElement(form, vat);
       SateraitoWF.enableFormElement(form, wht);
       SateraitoWF.enableFormElement(form, amount);
-      console.log('enable : '+ amount);
     }
 
     SateraitoWF.enableFormElement(form, 'cost_idr');
@@ -744,26 +744,26 @@ if (doc_status == '') {
 }
 
 function createInvoiceNumber(id){
-    SateraitoWF.requestMasterDataRow('new_invoice_number', id, function (aRow) {
-        if (typeof aRow != 'undefined' && typeof aRow.data_key != 'undefined') {
-          var fixnum = aRow.attribute_2.padStart(5, '0');
-          var invoice_code = SateraitoWF.getFormValue(form, 'code_invoice');
-          var year = SateraitoWF.getFormValue(form, 'dummy_date');
-          year = year.slice(2, -6);
-          SateraitoWF.alert('Quota : ' +  aRow.attribute_1 );
+  SateraitoWF.requestMasterDataRow('new_reim_number', id, function (aRow) {
+      if (typeof aRow != 'undefined' && typeof aRow.data_key != 'undefined') {
+        var fixnum = aRow.attribute_2.padStart(5, '0');
+        var invoice_code = SateraitoWF.getFormValue(form, 'code_invoice');
+        var year = SateraitoWF.getFormValue(form, 'dummy_date');
+        year = year.slice(2, -6);
+        SateraitoWF.alert('Quota : ' +  aRow.attribute_1 );
 
-          if(aRow.attribute_1 >= 1){
-            SateraitoWF.setFormValue(form, 'invoice_number_view', fixnum);
-            SateraitoWF.setFormValue(form, 'generated_code', invoice_code + year + fixnum + 'OSL');
-          }else{
-            SateraitoWF.alert('your quota is exceeded, please update master data');
-            $(form).find(':input[name=generated_code]').attr('mandatory_msg', 'Update quota before approve to generate invoice number');
-            $(form).find(':input[name=generated_code]').addClass('mandatory');
-          }
-        } else {
-          SateraitoWF.setFormValue(form, 'invoice_number_view', '');
+        if(aRow.attribute_1 >= 1){
+          SateraitoWF.setFormValue(form, 'invoice_number_view', fixnum);
+          SateraitoWF.setFormValue(form, 'generated_code', invoice_code + year + fixnum + 'OSL');
+        }else{
+          SateraitoWF.alert('your quota is exceeded, please update master data');
+          $(form).find(':input[name=generated_code]').attr('mandatory_msg', 'Update quota before approve to generate invoice number');
+          $(form).find(':input[name=generated_code]').addClass('mandatory');
         }
-      });
+      } else {
+        SateraitoWF.setFormValue(form, 'invoice_number_view', '');
+      }
+    });
 }
 
 //onChange Invoice Code Function
@@ -773,23 +773,24 @@ $(form)
     addService();
   });
 
+
+  if (SateraitoWF.getViewerUserInfo().email == 'muhammad.shaugi@os-selnajaya.com') {
+    SateraitoWF.enableFormElement(form, 'button_print_invoice');
+    $(form).find(':input[name=button_print_invoice]').css('display', 'block');
+  }
+  if (SateraitoWF.getViewerUserInfo().email == 'ariyani.syahfitri@os-selnajaya.com') {
+    SateraitoWF.enableFormElement(form, 'button_print_invoice');
+    $(form).find(':input[name=button_print_invoice]').css('display', 'block');
+  }
 SateraitoWF.disableFormElement(form, 'button_print_invoice');
 $(form).find(':input[name=button_print_invoice]').css('display', 'none');
-
-if (SateraitoWF.getViewerUserInfo().email == 'muhammad.shaugi@os-selnajaya.com') {
-  SateraitoWF.enableFormElement(form, 'button_print_invoice');
-  $(form).find(':input[name=button_print_invoice]').css('display', 'block');
-}
-if (SateraitoWF.getViewerUserInfo().email == 'ariyani.syahfitri@os-selnajaya.com') {
-  SateraitoWF.enableFormElement(form, 'button_print_invoice');
-  $(form).find(':input[name=button_print_invoice]').css('display', 'block');
-}
 
 SateraitoWF.disableFormElement(form, 'button_print_invoice');
 
 var invoice_code = SateraitoWF.getFormValue(form, 'generated_code');
 
-
 checkButtonPrint(invoice_code);
 
 SateraitoWF.disableFormElement(form, 'invoice_detail');
+
+
