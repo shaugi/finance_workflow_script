@@ -4,165 +4,56 @@ total_wht = 0;
 
 //==========FUNCTION=============//
 function calculateTotalAmount() {
-  var amount1 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount1'));
-  var amount2 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount2'));
-  var amount3 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount3'));
-  var amount4 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount4'));
-  var amount5 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount5'));
-  var amount6 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount6'));
-  var amount7 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount7'));
-  var amount8 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount8'));
-  var amount9 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount9'));
-  var amount10 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount10'));
-  var discount = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'invoice_discount'));
+  // Initialize variables
+  var total_vat = 0;
+  var total_wht = 0;
+  var grand_total = 0;
 
-  amount1 = parseFloat(amount1) || 0;
-  amount2 = parseFloat(amount2) || 0;
-  amount3 = parseFloat(amount3) || 0;
-  amount4 = parseFloat(amount4) || 0;
-  amount5 = parseFloat(amount5) || 0;
-  amount6 = parseFloat(amount6) || 0;
-  amount7 = parseFloat(amount7) || 0;
-  amount8 = parseFloat(amount8) || 0;
-  amount9 = parseFloat(amount9) || 0;
-  amount10 = parseFloat(amount10) || 0;
+  // Loop through amounts, quantities, unit prices, VATs, and WHTs
+  for (var i = 1; i <= 10; i++) {
+    var amount = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount' + i))) || 0;
+    var qty = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity' + i))) || 0;
+    var up = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price' + i))) || 0;
+    var vat = parseFloat(SateraitoWF.getFormValue(form, 'vat' + i)) || 0;
+    var wht = parseFloat(SateraitoWF.getFormValue(form, 'wht' + i)) || 0;
 
-  var qty1 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity1'));
-  var qty2 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity2'));
-  var qty3 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity3'));
-  var qty4 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity4'));
-  var qty5 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity5'));
-  var qty6 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity6'));
-  var qty7 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity7'));
-  var qty8 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity8'));
-  var qty9 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity9'));
-  var qty10 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity10'));
-
-  var up1 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price1'));
-  var up2 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price2'));
-  var up3 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price3'));
-  var up4 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price4'));
-  var up5 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price5'));
-  var up6 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price6'));
-  var up7 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price7'));
-  var up8 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price8'));
-  var up9 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price9'));
-  var up10 = SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price10'));
-
-  var wht1 = SateraitoWF.getFormValue(form, 'wht1');
-  var wht2 = SateraitoWF.getFormValue(form, 'wht2');
-  var wht3 = SateraitoWF.getFormValue(form, 'wht3');
-  var wht4 = SateraitoWF.getFormValue(form, 'wht4');
-  var wht5 = SateraitoWF.getFormValue(form, 'wht5');
-  var wht6 = SateraitoWF.getFormValue(form, 'wht6');
-  var wht7 = SateraitoWF.getFormValue(form, 'wht7');
-  var wht8 = SateraitoWF.getFormValue(form, 'wht8');
-  var wht9 = SateraitoWF.getFormValue(form, 'wht9');
-  var wht10 = SateraitoWF.getFormValue(form, 'wht10');
-
-  var vat1 = SateraitoWF.getFormValue(form, 'vat1');
-  var vat2 = SateraitoWF.getFormValue(form, 'vat2');
-  var vat3 = SateraitoWF.getFormValue(form, 'vat3');
-  var vat4 = SateraitoWF.getFormValue(form, 'vat4');
-  var vat5 = SateraitoWF.getFormValue(form, 'vat5');
-  var vat6 = SateraitoWF.getFormValue(form, 'vat6');
-  var vat7 = SateraitoWF.getFormValue(form, 'vat7');
-  var vat8 = SateraitoWF.getFormValue(form, 'vat8');
-  var vat9 = SateraitoWF.getFormValue(form, 'vat9');
-  var vat10 = SateraitoWF.getFormValue(form, 'vat10');
-
-  var total_vat1 = qty1 * up1 * (vat1 / 100);
-  var total_vat2 = qty2 * up2 * (vat2 / 100);
-  var total_vat3 = qty3 * up3 * (vat3 / 100);
-  var total_vat4 = qty4 * up4 * (vat4 / 100);
-  var total_vat5 = qty5 * up5 * (vat5 / 100);
-  var total_vat6 = qty6 * up6 * (vat6 / 100);
-  var total_vat7 = qty7 * up7 * (vat7 / 100);
-  var total_vat8 = qty8 * up8 * (vat8 / 100);
-  var total_vat9 = qty9 * up9 * (vat9 / 100);
-  var total_vat10 = qty10 * up10 * (vat10 / 100);
-
-  var total_wht1 = qty1 * up1 * (wht1 / 100);
-  var total_wht2 = qty2 * up2 * (wht2 / 100);
-  var total_wht3 = qty3 * up3 * (wht3 / 100);
-  var total_wht4 = qty4 * up4 * (wht4 / 100);
-  var total_wht5 = qty5 * up5 * (wht5 / 100);
-  var total_wht6 = qty6 * up6 * (wht6 / 100);
-  var total_wht7 = qty7 * up7 * (wht7 / 100);
-  var total_wht8 = qty8 * up8 * (wht8 / 100);
-  var total_wht9 = qty9 * up9 * (wht9 / 100);
-  var total_wht10 = qty10 * up10 * (wht10 / 100);
-
-  // Calculate total VAT
-
-  var calculate_vat =
-    total_vat1 + total_vat2 + total_vat3 + total_vat4 + total_vat5 + total_vat6 + total_vat7 + total_vat8 + total_vat9 + total_vat10;
-  if (calculate_vat == 0) {
-    total_vat = 0;
-  } else {
-    total_vat_cek =
-      total_vat1 +
-      total_vat2 +
-      total_vat3 +
-      total_vat4 +
-      total_vat5 +
-      total_vat6 +
-      total_vat7 +
-      total_vat8 +
-      total_vat9 +
-      total_vat10 -
-      discount * 0.11;
-    if (discount * 0.11 > total_vat_cek) {
-      total_vat = total_vat_cek + discount * 0.11;
-    } else {
-      total_vat = total_vat_cek;
-    }
+    // Calculate VAT and WHT for current line item
+    total_vat += qty * up * (vat / 100);
+    total_wht += qty * up * (wht / 100);
   }
 
-  var calculate_wht =
-    total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 + total_wht9 + total_wht10;
-  if (calculate_wht == 0) {
-    total_wht = 0;
-  } else {
-    total_wht_cek =
-      total_wht1 +
-      total_wht2 +
-      total_wht3 +
-      total_wht4 +
-      total_wht5 +
-      total_wht6 +
-      total_wht7 +
-      total_wht8 +
-      total_wht9 +
-      total_wht10 -
-      discount * 0.02;
-    if (discount * 0.02 > total_wht_cek) {
-      total_wht = total_wht_cek + discount * 0.02;
-    } else {
-      total_wht = total_wht_cek;
-    }
-  }
-
+  // Get discount and currency
+  var discount = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'invoice_discount'))) || 0;
   var currency = SateraitoWF.getFormValue(form, 'curency');
-  if (currency != 'USD') {
-    SateraitoWF.setFormValue(form, 'witholding_tax', total_wht = 0 ?  '' : total_wht);
-    SateraitoWF.setFormValue(form, 'total_vat', total_vat = 0 ? '' : total_vat);
+
+  // Calculate sub total
+  var sub_total = 0;
+  for (var i = 1; i <= 10; i++) {
+    sub_total += parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount' + i))) || 0;
+  }
+  sub_total -= discount;
+
+  grand_total = sub_total + total_vat - total_wht;
+
+  if (currency !== 'USD') {
+    SateraitoWF.setFormValue(form, 'witholding_tax', Math.floor(total_wht));
+    SateraitoWF.setFormValue(form, 'total_vat', Math.floor(total_vat));
+    SateraitoWF.setFormValue(form, 'sub_total', Math.ceil(sub_total));
+    SateraitoWF.setFormValue(form, 'grand_total', Math.ceil(grand_total));
   } else {
-    SateraitoWF.setFormValue(form, 'witholding_tax', total_wht = 0 ? '' : total_wht);
-    SateraitoWF.setFormValue(form, 'total_vat', total_vat = 0 ? '' : total_vat);
+    SateraitoWF.setFormValue(form, 'witholding_tax', total_wht.toFixed(2));
+    SateraitoWF.setFormValue(form, 'total_vat', total_vat.toFixed(2));
+    SateraitoWF.setFormValue(form, 'sub_total', sub_total.toFixed(2));
+    SateraitoWF.setFormValue(form, 'grand_total', grand_total.toFixed(2));
   }
 
-  var sub_total = amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 + amount9 + amount10 - discount;
-  SateraitoWF.setFormValue(form, 'sub_total', sub_total);
+  console.log("total_wht : "+total_wht)
+  console.log("total_vat : "+total_vat)
+  console.log("sub_total : "+sub_total)
+  console.log("grand_total : "+grand_total)
 
-  if (currency != 'USD') {
-    var grand_total = sub_total + total_vat - total_wht;
-  } else {
-    var grand_total = sub_total + total_vat - total_wht;
-  }
-
-  SateraitoWF.setFormValue(form, 'grand_total', grand_total);
 }
+
 
 //PUSH TO POWERAUTOMATE
 function push() {
