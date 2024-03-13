@@ -443,7 +443,7 @@ function createInvoiceV2() {
   };
   $.ajax({
     type: 'POST',
-    url: 'https://prod-12.southeastasia.logic.azure.com:443/workflows/099588558462452d827374cbbab7aec2/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dBdWHUXHPV-L3UQazzTMftpyNbMCeL3EpO86dfkdy8M',
+    url: 'https://prod-19.southeastasia.logic.azure.com:443/workflows/e881666399aa410f9bb8bd14a3116edd/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vlUU3VvIGs0PpNG7bVTp-NaNWMuu6WeklOHZ4Uot4F8',
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
     data: JSON.stringify(data),
