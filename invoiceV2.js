@@ -760,3 +760,5 @@ var invoice_code = SateraitoWF.getFormValue(form, 'generated_code');
 checkButtonPrint(invoice_code);
 
 SateraitoWF.disableFormElement(form, 'invoice_detail');
+
+calculateTotalAmount();

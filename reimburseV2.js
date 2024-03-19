@@ -869,4 +869,4 @@ checkButtonPrint(invoice_code);
 
 SateraitoWF.disableFormElement(form, 'invoice_detail');
 
-
+calculateTotalAmount();
