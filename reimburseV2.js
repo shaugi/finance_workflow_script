@@ -119,25 +119,13 @@ function calculateTotalAmount() {
     }
   }
 
-  var calculate_wht =
-    total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 + total_wht9 + total_wht10;
+  var calculate_wht = total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 + total_wht9 + total_wht10;
   if (calculate_wht == 0) {
     total_wht = 0;
   } else {
-    total_wht_cek =
-      total_wht1 +
-      total_wht2 +
-      total_wht3 +
-      total_wht4 +
-      total_wht5 +
-      total_wht6 +
-      total_wht7 +
-      total_wht8 +
-      total_wht9 +
-      total_wht10 -
-      discount * 0.02;
+    total_wht_cek = total_wht1 + total_wht2 + total_wht3 + total_wht4 + total_wht5 + total_wht6 + total_wht7 + total_wht8 + total_wht9 + total_wht10 - (discount * 0.02);
     if (discount * 0.02 > total_wht_cek) {
-      total_wht = total_wht_cek + discount * 0.02;
+      total_wht = total_wht_cek + (discount * 0.02);
     } else {
       total_wht = total_wht_cek;
     }
