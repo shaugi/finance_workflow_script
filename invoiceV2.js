@@ -4,73 +4,62 @@ total_wht = 0;
 
 //==========FUNCTION=============//
 function calculateTotalAmount(){
-  var amount1 = SateraitoWF.getFormValue(form, "amount1");
-  var amount2 = SateraitoWF.getFormValue(form, "amount2");
-  var amount3 = SateraitoWF.getFormValue(form, "amount3");
-  var amount4 = SateraitoWF.getFormValue(form, "amount4");
-  var amount5 = SateraitoWF.getFormValue(form, "amount5");
-  var amount6 = SateraitoWF.getFormValue(form, "amount6");
-  var amount7 = SateraitoWF.getFormValue(form, "amount7");
-  var amount8 = SateraitoWF.getFormValue(form, "amount8");
-  var amount9 = SateraitoWF.getFormValue(form, "amount9");
-  var amount10 = SateraitoWF.getFormValue(form, "amount10");
-  var discount = SateraitoWF.getFormValue(form, "invoice_discount");
+  // SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount' + i))) || 0;
+  var amount1  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount1"))) || 0;
+  var amount2  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount2"))) || 0;
+  var amount3  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount3"))) || 0;
+  var amount4  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount4"))) || 0;
+  var amount5  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount5"))) || 0;
+  var amount6  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount6"))) || 0;
+  var amount7  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount7"))) || 0;
+  var amount8  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount8"))) || 0;
+  var amount9  = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount9"))) || 0;
+  var amount10 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "amount10"))) || 0;;
+  var discount = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "invoice_discount"))) || 0;;
 
+  var qty1 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity1"))) || 0;
+  var qty2 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity2"))) || 0;
+  var qty3 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity3"))) || 0;
+  var qty4 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity4"))) || 0;
+  var qty5 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity5"))) || 0;
+  var qty6 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity6"))) || 0;
+  var qty7 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity7"))) || 0;
+  var qty8 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity8"))) || 0;
+  var qty9 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity9"))) || 0;
+  var qty10 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "quantity10"))) || 0;;
 
-  amount1 =  parseFloat(amount1) || 0;
-  amount2 =  parseFloat(amount2) || 0;
-  amount3 =  parseFloat(amount3) || 0;
-  amount4 =  parseFloat(amount4) || 0;
-  amount5 =  parseFloat(amount5) || 0;
-  amount6 =  parseFloat(amount6) || 0;
-  amount7 =  parseFloat(amount7) || 0;
-  amount8 =  parseFloat(amount8) || 0;
-  amount9 =  parseFloat(amount9) || 0;
-  amount10 =  parseFloat(amount10) || 0;
+  var up1 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price1"))) || 0;
+  var up2 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price2"))) || 0;
+  var up3 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price3"))) || 0;
+  var up4 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price4"))) || 0;
+  var up5 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price5"))) || 0;
+  var up6 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price6"))) || 0;
+  var up7 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price7"))) || 0;
+  var up8 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price8"))) || 0;
+  var up9 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price9"))) || 0;
+  var up10 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form,"unit_price10"))) || 0;
 
-  var qty1 = SateraitoWF.getFormValue(form, "quantity1");
-  var qty2 = SateraitoWF.getFormValue(form, "quantity2");
-  var qty3 = SateraitoWF.getFormValue(form, "quantity3");
-  var qty4 = SateraitoWF.getFormValue(form, "quantity4");
-  var qty5 = SateraitoWF.getFormValue(form, "quantity5");
-  var qty6 = SateraitoWF.getFormValue(form, "quantity6");
-  var qty7 = SateraitoWF.getFormValue(form, "quantity7");
-  var qty8 = SateraitoWF.getFormValue(form, "quantity8");
-  var qty9 = SateraitoWF.getFormValue(form, "quantity9");
-  var qty10 = SateraitoWF.getFormValue(form, "quantity10");
+  var wht1 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht1"))) || 0;
+  var wht2 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht2"))) || 0;
+  var wht3 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht3"))) || 0;
+  var wht4 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht4"))) || 0;
+  var wht5 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht5"))) || 0;
+  var wht6 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht6"))) || 0;
+  var wht7 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht7"))) || 0;
+  var wht8 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht8"))) || 0;
+  var wht9 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht9"))) || 0;
+  var wht10 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "wht10"))) || 0;
 
-  var up1 = SateraitoWF.getFormValue(form,"unit_price1");
-  var up2 = SateraitoWF.getFormValue(form,"unit_price2");
-  var up3 = SateraitoWF.getFormValue(form,"unit_price3");
-  var up4 = SateraitoWF.getFormValue(form,"unit_price4");
-  var up5 = SateraitoWF.getFormValue(form,"unit_price5");
-  var up6 = SateraitoWF.getFormValue(form,"unit_price6");
-  var up7 = SateraitoWF.getFormValue(form,"unit_price7");
-  var up8 = SateraitoWF.getFormValue(form,"unit_price8");
-  var up9 = SateraitoWF.getFormValue(form,"unit_price9");
-  var up10 = SateraitoWF.getFormValue(form,"unit_price10");
-
-  var wht1 = SateraitoWF.getFormValue(form, "wht1");
-  var wht2 = SateraitoWF.getFormValue(form, "wht2");
-  var wht3 = SateraitoWF.getFormValue(form, "wht3");
-  var wht4 = SateraitoWF.getFormValue(form, "wht4");
-  var wht5 = SateraitoWF.getFormValue(form, "wht5");
-  var wht6 = SateraitoWF.getFormValue(form, "wht6");
-  var wht7 = SateraitoWF.getFormValue(form, "wht7");
-  var wht8 = SateraitoWF.getFormValue(form, "wht8");
-  var wht9 = SateraitoWF.getFormValue(form, "wht9");
-  var wht10 = SateraitoWF.getFormValue(form, "wht10");
-
-  var vat1 = SateraitoWF.getFormValue(form, "vat1");
-  var vat2 = SateraitoWF.getFormValue(form, "vat2");
-  var vat3 = SateraitoWF.getFormValue(form, "vat3");
-  var vat4 = SateraitoWF.getFormValue(form, "vat4");
-  var vat5 = SateraitoWF.getFormValue(form, "vat5");
-  var vat6 = SateraitoWF.getFormValue(form, "vat6");
-  var vat7 = SateraitoWF.getFormValue(form, "vat7");
-  var vat8 = SateraitoWF.getFormValue(form, "vat8");
-  var vat9 = SateraitoWF.getFormValue(form, "vat9");
-  var vat10 = SateraitoWF.getFormValue(form, "vat10");
+  var vat1 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat1"))) || 0;
+  var vat2 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat2"))) || 0;
+  var vat3 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat3"))) || 0;
+  var vat4 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat4"))) || 0;
+  var vat5 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat5"))) || 0;
+  var vat6 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat6"))) || 0;
+  var vat7 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat7"))) || 0;
+  var vat8 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat8"))) || 0;
+  var vat9 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat9"))) || 0;
+  var vat10 = parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, "vat10"))) || 0;
 
 
   var total_vat1 = ((qty1 * up1) * (vat1 / 100));
@@ -126,24 +115,28 @@ function calculateTotalAmount(){
 
   var currency =  SateraitoWF.getFormValue(form, "curency");
   if(currency != "USD"){
-      SateraitoWF.setFormValue(form, "witholding_tax", total_wht);
-      SateraitoWF.setFormValue(form, "vat_percentage", total_vat);
+      SateraitoWF.setFormValue(form, "witholding_tax", Math.floor(total_wht));
+      SateraitoWF.setFormValue(form, "total_vat", Math.floor(total_vat));
   }else{
-      SateraitoWF.setFormValue(form, "witholding_tax", total_wht);
-      SateraitoWF.setFormValue(form, "vat_percentage", total_vat);
+      SateraitoWF.setFormValue(form, "witholding_tax", total_wht.toFixed(2));
+      SateraitoWF.setFormValue(form, "vat_percentage", total_vat.toFixed(2));
   }
 
 
   var sub_total = (amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 + amount9 + amount10 - discount);
   // var total = (amount1 + amount2 + amount3 + amount4 + amount5 + amount6 + amount7 + amount8 - discount + customRound(total_wht) - customRound(total_vat));
-  SateraitoWF.setFormValue(form, "sub_total", sub_total);
 
   if(currency != "USD"){
       var grand_total = sub_total + total_vat - total_wht;
+      var sub_total = Math.ceil(sub_total)
+      grand_total = Math.ceil(grand_total)
   }else{
       var grand_total = sub_total + total_vat - total_wht;
+      var sub_total = sub_total.toFixed(2)
+      grand_total = grand_total.toFixed(2)
   }
 
+  SateraitoWF.setFormValue(form, "sub_total", sub_total);
   SateraitoWF.setFormValue(form, "total_amount", grand_total);
 }
 
