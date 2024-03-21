@@ -135,9 +135,9 @@ function calculateTotalAmount(){
       var sub_total = sub_total.toFixed(2)
       grand_total = grand_total.toFixed(2)
   }
-
+  console.log(grand_total)
   SateraitoWF.setFormValue(form, "sub_total", sub_total);
-  SateraitoWF.setFormValue(form, "total_amount", grand_total);
+  SateraitoWF.setFormValue(form, "grand_total", grand_total);
 }
 
 //PUSH TO POWERAUTOMATE
