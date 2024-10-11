@@ -276,7 +276,7 @@ function push() {
 }
 
 function updateInvoiceNumber(data_key = SateraitoWF.getViewerUserInfo().email){
-  SateraitoWF.requestMasterDataRow('new_invoice_number',  data_key  , function(aRow){
+  SateraitoWF.requestMasterDataRow('new_reim_number',  data_key  , function(aRow){
     console.log(aRow.attribute_1);
     var update_data = {
         attribute_1:"1",
