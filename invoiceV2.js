@@ -732,68 +732,69 @@ if (doc_status == '') {
       SateraitoWF.disableFormElement(form, wht);
     }
   }else if (doc_status == 'in_process') {
-  var processInfos = SateraitoWF.getApproveProcessInfo(form);
+    var processInfos = SateraitoWF.getApproveProcessInfo(form);
+    if (processInfos[2].status == 'in_process') {
+      for (i = 1; i <= 10; i++) {
+        vat = 'vat' + i;
+        wht = 'wht' + i;
+        amount = 'amount' + i;
+        SateraitoWF.enableFormElement(form, vat);
+        SateraitoWF.enableFormElement(form, wht);
+        SateraitoWF.enableFormElement(form, amount);
+        console.log('enable : '+ amount);
+      }
 
+      SateraitoWF.enableFormElement(form, 'cost_idr');
+      SateraitoWF.enableFormElement(form, 'cost_usd');
+      SateraitoWF.enableFormElement(form, 'cost_sgd');
+      SateraitoWF.enableFormElement(form, 'cost_jpy');
+      SateraitoWF.enableFormElement(form, 'ex_rate');
+      SateraitoWF.enableFormElement(form, 'generated_code');
+      SateraitoWF.enableFormElement(form, 'detail_invoice');
+      SateraitoWF.enableFormElement(form, 'kode_faktur');
+      SateraitoWF.enableFormElement(form, 'rate_faktur_pajak');
 
-  if (processInfos[2].status == 'in_process') {
-    for (i = 1; i <= 10; i++) {
-      vat = 'vat' + i;
-      wht = 'wht' + i;
-      amount = 'amount' + i;
-      SateraitoWF.enableFormElement(form, vat);
-      SateraitoWF.enableFormElement(form, wht);
-      SateraitoWF.enableFormElement(form, amount);
-      console.log('enable : '+ amount);
+      $(form).find(':input[name=grand_total]').attr('mandatory_msg', 'Please calculate');
+      $(form).find(':input[name=grand_total]').addClass('mandatory');
+
+      SateraitoWF.enableFormElement(form, 'invoice_date');
+      $(form)
+        .find(':input[name=invoice_date]')
+        .blur(function () {
+          var a = SateraitoWF.getFormValue(form, 'invoice_date');
+          if (a == null || a == '') {
+            $(form).find(':input[name=invoice_date]').attr('mandatory_msg', 'Please select invoice date');
+            $(form).find(':input[name=invoice_date]').addClass('mandatory');
+          }
+      });
+
+      $(form).find(':input[name=invoice_date]').attr('mandatory_msg', 'Please select invoice date');
+      $(form).find(':input[name=invoice_date]').addClass('mandatory');
+
+      SateraitoWF.enableFormElement(form, 'ex_rate');
+      $(form).find(':input[name=ex_rate]').attr('mandatory_msg', 'Please inser rate ');
+      $(form).find(':input[name=ex_rate]').addClass('mandatory');
+
+      SateraitoWF.enableFormElement(form, 'total_vat');
+      $(form).find(':input[name=total_vat]').attr('mandatory_msg', 'Please insert vat percentage');
+      $(form).find(':input[name=total_vat]').addClass('mandatory');
+
+      SateraitoWF.enableFormElement(form, 'witholding_tax');
+      $(form).find(':input[name=witholding_tax]').attr('mandatory_msg', 'Please insert witholding tax');
+      $(form).find(':input[name=witholding_tax]').addClass('mandatory');
+
+      SateraitoWF.enableFormElement(form, 'discount');
+      $(form).find(':input[name=discount]').attr('mandatory_msg', 'Please insert discount');
+      $(form).find(':input[name=discount]').addClass('mandatory');
+
+      // Generate code on finance approval
+      var master_data_owner = SateraitoWF.getViewerUserInfo().email;
+      createInvoiceNumber(master_data_owner);
     }
-
-    SateraitoWF.enableFormElement(form, 'cost_idr');
-    SateraitoWF.enableFormElement(form, 'cost_usd');
-    SateraitoWF.enableFormElement(form, 'cost_sgd');
-    SateraitoWF.enableFormElement(form, 'cost_jpy');
-    SateraitoWF.enableFormElement(form, 'ex_rate');
-    SateraitoWF.enableFormElement(form, 'generated_code');
-    SateraitoWF.enableFormElement(form, 'detail_invoice');
-    SateraitoWF.enableFormElement(form, 'kode_faktur');
-    SateraitoWF.enableFormElement(form, 'rate_faktur_pajak');
-
-    $(form).find(':input[name=grand_total]').attr('mandatory_msg', 'Please calculate');
-    $(form).find(':input[name=grand_total]').addClass('mandatory');
-
-    SateraitoWF.enableFormElement(form, 'invoice_date');
-    $(form)
-      .find(':input[name=invoice_date]')
-      .blur(function () {
-        var a = SateraitoWF.getFormValue(form, 'invoice_date');
-        if (a == null || a == '') {
-          $(form).find(':input[name=invoice_date]').attr('mandatory_msg', 'Please select invoice date');
-          $(form).find(':input[name=invoice_date]').addClass('mandatory');
-        }
-    });
-
-    $(form).find(':input[name=invoice_date]').attr('mandatory_msg', 'Please select invoice date');
-    $(form).find(':input[name=invoice_date]').addClass('mandatory');
-
-    SateraitoWF.enableFormElement(form, 'ex_rate');
-    $(form).find(':input[name=ex_rate]').attr('mandatory_msg', 'Please inser rate ');
-    $(form).find(':input[name=ex_rate]').addClass('mandatory');
-
-    SateraitoWF.enableFormElement(form, 'total_vat');
-    $(form).find(':input[name=total_vat]').attr('mandatory_msg', 'Please insert vat percentage');
-    $(form).find(':input[name=total_vat]').addClass('mandatory');
-
-    SateraitoWF.enableFormElement(form, 'witholding_tax');
-    $(form).find(':input[name=witholding_tax]').attr('mandatory_msg', 'Please insert witholding tax');
-    $(form).find(':input[name=witholding_tax]').addClass('mandatory');
-
-    SateraitoWF.enableFormElement(form, 'discount');
-    $(form).find(':input[name=discount]').attr('mandatory_msg', 'Please insert discount');
-    $(form).find(':input[name=discount]').addClass('mandatory');
-
-    // Generate code on finance approval
-    var master_data_owner = SateraitoWF.getViewerUserInfo().email;
-    createInvoiceNumber(master_data_owner);
+  }else if(doc_status == 'final_approved'){
+    SateraitoWF.enableFormElement(form, 'button_cancel');
+    $(form).find(':input[name=button_cancel]').css('display', 'block');
   }
-}
 
 function createInvoiceNumber(id){
     SateraitoWF.requestMasterDataRow('new_invoice_number', id, function (aRow) {
@@ -816,6 +817,22 @@ function createInvoiceNumber(id){
           SateraitoWF.setFormValue(form, 'invoice_number_view', '');
         }
       });
+}
+
+
+function cancelRequest(){
+  var defaultValue = {
+    generated_code  :SateraitoWF.getFormValue(form, 'generated_code'),
+    service_dept    :SateraitoWF.getFormValue(form, 'service_dept'),
+    invoice_date    :SateraitoWF.getFormValue(form, 'invoice_date'),
+    To              :SateraitoWF.getFormValue(form, 'To'),
+    attn            :SateraitoWF.getFormValue(form, 'attn'),
+    company_name    :SateraitoWF.getFormValue(form, 'company_name'),
+    payment_due_date :SateraitoWF.getFormValue(form, 'payment_due_date'),
+    grand_total     :SateraitoWF.getFormValue(form, 'grand_total'),
+    };
+
+  SateraitoWF.showNewDocWindowWithRelation(form, 'template-20240327074345aR6fxnVdRpFvQ162', defaultValue, true, true);
 }
 
 //onChange Invoice Code Function

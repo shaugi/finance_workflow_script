@@ -276,7 +276,7 @@ function push() {
 }
 
 function updateInvoiceNumber(data_key = SateraitoWF.getViewerUserInfo().email){
-  SateraitoWF.requestMasterDataRow('new_invoice_number',  data_key  , function(aRow){
+  SateraitoWF.requestMasterDataRow('new_reim_number',  data_key  , function(aRow){
     console.log(aRow.attribute_1);
     var update_data = {
         attribute_1:"1",
@@ -805,6 +805,9 @@ if (doc_status == '') {
     var master_data_owner = SateraitoWF.getViewerUserInfo().email;
     createInvoiceNumber(master_data_owner);
   }
+}else if(doc_status == 'final_approved'){
+  SateraitoWF.enableFormElement(form, 'button_cancel');
+  $(form).find(':input[name=button_cancel]').css('display', 'block');
 }
 
 function createInvoiceNumber(id){
@@ -829,6 +832,23 @@ function createInvoiceNumber(id){
       }
     });
 }
+
+
+function cancelRequest(){
+  var defaultValue = {
+    generated_code  :SateraitoWF.getFormValue(form, 'generated_code'),
+    service_dept    :SateraitoWF.getFormValue(form, 'service_dept'),
+    invoice_date    :SateraitoWF.getFormValue(form, 'invoice_date'),
+    To              :SateraitoWF.getFormValue(form, 'To'),
+    attn            :SateraitoWF.getFormValue(form, 'attn'),
+    company_name    :SateraitoWF.getFormValue(form, 'company_name'),
+    payment_due_date :SateraitoWF.getFormValue(form, 'payment_due_date'),
+    grand_total     :SateraitoWF.getFormValue(form, 'grand_total'),
+    };
+
+  SateraitoWF.showNewDocWindowWithRelation(form, 'template-20240327074345aR6fxnVdRpFvQ162', defaultValue, true, true);
+}
+
 
 //onChange Invoice Code Function
 $(form)
