@@ -173,9 +173,9 @@ function push() {
       subcount_details: SateraitoWF.getFormValue(form, 'subcount_details'),
     },
     receipt_information: {
-      to: SateraitoWF.getFormValue(form, 'To'),
-      attn: SateraitoWF.getFormValue(form, 'attn'),
-      company: SateraitoWF.getFormValue(form, 'company_name'),
+      to: SateraitoWF.getFormValue(form, 'To').toUpperCase(),
+      attn: SateraitoWF.getFormValue(form, 'attn').toUpperCase(),
+      company: SateraitoWF.getFormValue(form, 'company_name').toUpperCase(),
     },
     service_details: [
       {
@@ -301,9 +301,9 @@ function createInvoice() {
     issue_date: formatDate(SateraitoWF.getFormValue(form, 'invoice_date')),
     invoice_no: SateraitoWF.getFormValue(form, 'generated_code'),
     currency_rate: parseFloat(SateraitoWF.getFormValue(form, 'ex_rate')),
-    to: SateraitoWF.getFormValue(form, 'To'),
-    attn: SateraitoWF.getFormValue(form, 'attn'),
-    company: SateraitoWF.getFormValue(form, 'company_name'),
+    to: SateraitoWF.getFormValue(form, 'To').toUpperCase(),
+    attn: SateraitoWF.getFormValue(form, 'attn').toUpperCase(),
+    company: SateraitoWF.getFormValue(form, 'company_name').toUpperCase(),
     title1: SateraitoWF.getFormValue(form, 'description1'),
     qty1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity1'))),
     unit_price1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price1'))),
