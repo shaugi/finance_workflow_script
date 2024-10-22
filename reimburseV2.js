@@ -866,6 +866,10 @@ $(form)
     SateraitoWF.enableFormElement(form, 'button_print_invoice');
     $(form).find(':input[name=button_print_invoice]').css('display', 'block');
   }
+  if (SateraitoWF.getViewerUserInfo().email == 'silvana.septiani@os-selnajaya.com') {
+    SateraitoWF.enableFormElement(form, 'button_print_invoice');
+    $(form).find(':input[name=button_print_invoice]').css('display', 'block');
+  }
 SateraitoWF.disableFormElement(form, 'button_print_invoice');
 $(form).find(':input[name=button_print_invoice]').css('display', 'none');
 
