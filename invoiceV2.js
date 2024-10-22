@@ -363,7 +363,7 @@ function createInvoiceV2() {
     issue_date: formatDate(SateraitoWF.getFormValue(form, 'invoice_date')),
     invoice_no: SateraitoWF.getFormValue(form, 'generated_code'),
     currency_rate: parseFloat(SateraitoWF.getFormValue(form, 'ex_rate')),
-    to: SateraitoWF.getFormValue(form, 'To'),
+    to: SateraitoWF.getFormValue(form, 'To').toUpperCase(),
     attn: SateraitoWF.getFormValue(form, 'attn').toUpperCase(),
     company: SateraitoWF.getFormValue(form, 'company_name').toUpperCase(),
     title1: SateraitoWF.getFormValue(form, 'description1').toUpperCase(),
