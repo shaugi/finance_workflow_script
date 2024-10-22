@@ -1,5 +1,7 @@
 form = SateraitoWF.getForm(document.getElementsByName('workflow_doc_load_handler'));
 
+var doc_status = SateraitoWF.getDocStatus(form);
+var processInfos = SateraitoWF.getApproveProcessInfo(form);
 //PUSH TO POWERAUTOMATE
 function push() {
   var docID = SateraitoWF.getDocId(form);
