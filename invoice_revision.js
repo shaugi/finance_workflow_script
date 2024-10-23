@@ -263,100 +263,100 @@ function push() {
 
 }
 
-function updateInvoiceNumber(data_key = SateraitoWF.getViewerUserInfo().email){
-  SateraitoWF.requestMasterDataRow('new_invoice_number',  data_key  , function(aRow){
-    console.log(aRow.attribute_1);
-    var update_data = {
-        attribute_1:"1",
-        attribute_2:"1"
-      };
-    var update_option = {};
-    update_option['attribute_1'] = ['diff'];
-    update_option['attribute_2'] = ['sum'];
-    SateraitoWF.updateMasterDataRow(aRow.master_code, aRow.data_key, 'U', update_data, update_option, function(is_ok, error_code, aResultMaster){
-      if(!is_ok){
-            SateraitoWF.alert('Failed to update invoice number. error_code=' +  error_code );
-      }else{
-            SateraitoWF.alert('invoice number secured. Next invoice number is = ' + aResultMaster.attribute_1 ) ;
-      }
-    });
-  });
-}
+// function updateInvoiceNumber(data_key = SateraitoWF.getViewerUserInfo().email){
+//   SateraitoWF.requestMasterDataRow('new_invoice_number',  data_key  , function(aRow){
+//     console.log(aRow.attribute_1);
+//     var update_data = {
+//         attribute_1:"1",
+//         attribute_2:"1"
+//       };
+//     var update_option = {};
+//     update_option['attribute_1'] = ['diff'];
+//     update_option['attribute_2'] = ['sum'];
+//     SateraitoWF.updateMasterDataRow(aRow.master_code, aRow.data_key, 'U', update_data, update_option, function(is_ok, error_code, aResultMaster){
+//       if(!is_ok){
+//             SateraitoWF.alert('Failed to update invoice number. error_code=' +  error_code );
+//       }else{
+//             SateraitoWF.alert('invoice number secured. Next invoice number is = ' + aResultMaster.attribute_1 ) ;
+//       }
+//     });
+//   });
+// }
 
 
-function createInvoice() {
-  var data = {
-    issue_date: formatDate(SateraitoWF.getFormValue(form, 'invoice_date')),
-    invoice_no: SateraitoWF.getFormValue(form, 'generated_code'),
-    currency_rate: parseFloat(SateraitoWF.getFormValue(form, 'ex_rate')),
-    to: SateraitoWF.getFormValue(form, 'To').toUpperCase(),
-    attn: SateraitoWF.getFormValue(form, 'attn').toUpperCase(),
-    company: SateraitoWF.getFormValue(form, 'company_name').toUpperCase(),
-    title1: SateraitoWF.getFormValue(form, 'description1'),
-    qty1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity1'))),
-    unit_price1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price1'))),
-    amount1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount1'))),
-    title2: SateraitoWF.getFormValue(form, 'description2'),
-    qty2: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity2'))),
-    unit_price2: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price2'))),
-    amount2: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount2'))),
-    title3: SateraitoWF.getFormValue(form, 'description3'),
-    qty3: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity3'))),
-    unit_price3: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price3'))),
-    amount3: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount3'))),
-    title4: SateraitoWF.getFormValue(form, 'description4'),
-    qty4: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity4'))),
-    unit_price4: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price4'))),
-    amount4: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount4'))),
-    title5: SateraitoWF.getFormValue(form, 'description5'),
-    qty5: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity5'))),
-    unit_price5: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price5'))),
-    amount5: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount5'))),
-    title6: SateraitoWF.getFormValue(form, 'description6'),
-    qty6: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity6'))),
-    unit_price6: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price6'))),
-    amount6: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount6'))),
-    title7: SateraitoWF.getFormValue(form, 'description7'),
-    qty7: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity7'))),
-    unit_price7: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price7'))),
-    amount7: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount7'))),
-    title8: SateraitoWF.getFormValue(form, 'description8'),
-    qty8: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity8'))),
-    unit_price8: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price8'))),
-    amount8: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount8'))),
-    title9: SateraitoWF.getFormValue(form, 'description9'),
-    qty9: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity9'))),
-    unit_price9: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price9'))),
-    amount9: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount9'))),
-    title10: SateraitoWF.getFormValue(form, 'description10'),
-    qty10: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity10'))),
-    unit_price10: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price10'))),
-    amount10: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount10'))),
-    vat: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'total_vat'))),
-    wht: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'witholding_tax'))),
-    discount: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'invoice_discount'))),
-    remarks: SateraitoWF.getFormValue(form, 'remaks'),
-    payment_due_date: SateraitoWF.getFormValue(form, 'payment_due_date'),
-    grand_total: parseFloat(SateraitoWF.getFormValue(form, 'grand_total')),
-    service: SateraitoWF.getFormValue(form, 'service_dept'),
-    currency: SateraitoWF.getFormValue(form, 'curency'),
-  };
-  $.ajax({
-    type: 'POST',
-    url: 'https://prod-29.southeastasia.logic.azure.com:443/workflows/94f5b8b53d984fb3917ec9f2fe1f8706/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vj76isFXn9SkyC9RNGcmwkbyFWix0FMq1j-ixiMpbYE',
-    contentType: 'application/json; charset=utf-8',
-    dataType: 'json',
-    data: JSON.stringify(data),
-    success: function (success) {
-      console.log(success);
-      SateraitoWF.alert('Invoice Generated');
-      SateraitoWF.disableFormElement(form, 'button_print_invoice');
-    },
-    error: function (errMsg) {
-      console.log(errMsg);
-    },
-  });
-}
+// function createInvoice() {
+//   var data = {
+//     issue_date: formatDate(SateraitoWF.getFormValue(form, 'invoice_date')),
+//     invoice_no: SateraitoWF.getFormValue(form, 'generated_code'),
+//     currency_rate: parseFloat(SateraitoWF.getFormValue(form, 'ex_rate')),
+//     to: SateraitoWF.getFormValue(form, 'To').toUpperCase(),
+//     attn: SateraitoWF.getFormValue(form, 'attn').toUpperCase(),
+//     company: SateraitoWF.getFormValue(form, 'company_name').toUpperCase(),
+//     title1: SateraitoWF.getFormValue(form, 'description1'),
+//     qty1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity1'))),
+//     unit_price1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price1'))),
+//     amount1: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount1'))),
+//     title2: SateraitoWF.getFormValue(form, 'description2'),
+//     qty2: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity2'))),
+//     unit_price2: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price2'))),
+//     amount2: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount2'))),
+//     title3: SateraitoWF.getFormValue(form, 'description3'),
+//     qty3: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity3'))),
+//     unit_price3: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price3'))),
+//     amount3: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount3'))),
+//     title4: SateraitoWF.getFormValue(form, 'description4'),
+//     qty4: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity4'))),
+//     unit_price4: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price4'))),
+//     amount4: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount4'))),
+//     title5: SateraitoWF.getFormValue(form, 'description5'),
+//     qty5: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity5'))),
+//     unit_price5: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price5'))),
+//     amount5: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount5'))),
+//     title6: SateraitoWF.getFormValue(form, 'description6'),
+//     qty6: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity6'))),
+//     unit_price6: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price6'))),
+//     amount6: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount6'))),
+//     title7: SateraitoWF.getFormValue(form, 'description7'),
+//     qty7: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity7'))),
+//     unit_price7: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price7'))),
+//     amount7: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount7'))),
+//     title8: SateraitoWF.getFormValue(form, 'description8'),
+//     qty8: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity8'))),
+//     unit_price8: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price8'))),
+//     amount8: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount8'))),
+//     title9: SateraitoWF.getFormValue(form, 'description9'),
+//     qty9: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity9'))),
+//     unit_price9: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price9'))),
+//     amount9: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount9'))),
+//     title10: SateraitoWF.getFormValue(form, 'description10'),
+//     qty10: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'quantity10'))),
+//     unit_price10: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'unit_price10'))),
+//     amount10: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'amount10'))),
+//     vat: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'total_vat'))),
+//     wht: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'witholding_tax'))),
+//     discount: parseFloat(SateraitoWF.removeComma(SateraitoWF.getFormValue(form, 'invoice_discount'))),
+//     remarks: SateraitoWF.getFormValue(form, 'remaks'),
+//     payment_due_date: SateraitoWF.getFormValue(form, 'payment_due_date'),
+//     grand_total: parseFloat(SateraitoWF.getFormValue(form, 'grand_total')),
+//     service: SateraitoWF.getFormValue(form, 'service_dept'),
+//     currency: SateraitoWF.getFormValue(form, 'curency'),
+//   };
+//   $.ajax({
+//     type: 'POST',
+//     url: 'https://prod-29.southeastasia.logic.azure.com:443/workflows/94f5b8b53d984fb3917ec9f2fe1f8706/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vj76isFXn9SkyC9RNGcmwkbyFWix0FMq1j-ixiMpbYE',
+//     contentType: 'application/json; charset=utf-8',
+//     dataType: 'json',
+//     data: JSON.stringify(data),
+//     success: function (success) {
+//       console.log(success);
+//       SateraitoWF.alert('Invoice Generated');
+//       SateraitoWF.disableFormElement(form, 'button_print_invoice');
+//     },
+//     error: function (errMsg) {
+//       console.log(errMsg);
+//     },
+//   });
+// }
 
 function createInvoiceV2() {
   var data = {
@@ -463,115 +463,115 @@ $(form).find(':input[name=invoice_discount]').change(function(){
 
 });
 
-function addService() {
-  var service = null;
-  var detCode = null;
-  var code = SateraitoWF.getFormValue(form, 'invoice_code');
-  console.log(code);
-  switch (code) {
-    case 'EXE':
-      detCode = 'WC/JP/';
-      service = 'Recruitment Service';
-      break;
-    case 'JP':
-      detCode = 'WC/JP/';
-      service = 'Recruitment Service';
-      break;
-    case 'KOR':
-      detCode = 'WC/JP/';
-      service = 'Recruitment Service';
-      break;
-    case 'OS':
-      detCode = 'WC/OSJP/';
-      service = 'Recruitment Service';
-      break;
-    case 'LG-TR':
-      detCode = 'TR';
-      service = 'Translation Service';
-      break;
-    case 'LG-INT':
-      detCode = 'INT';
-      service = 'Interpretation Service';
-      break;
-    case 'ED-JLMC':
-      detCode = 'JLMC';
-      service = 'Education';
-      break;
-    case 'ED-LC(JP)':
-      detCode = 'LC/JP/';
-      service = 'Language Course';
-      break;
-    case 'AD':
-      detCode = 'BC/AD/';
-      service = 'Alih Daya Service';
-      break;
-    case 'ES-RS':
-      detCode = 'BC/RS/';
-      service = 'Recruitment Service';
-      break;
-    case 'CEBL':
-      detCode = 'BS/CEBL/';
-      service = 'Business License Obtaining Service';
-      break;
-    case 'HRC':
-      detCode = 'HRC';
-      service = 'HR Consulting/ Company Regulation/ Employee Agreement';
-      break;
-    case 'HRC-PAY':
-      detCode = 'PAY';
-      service = 'Payroll Service';
-      break;
-    case 'HRC-PSY':
-      detCode = 'PSY';
-      service = 'Assesment Service';
-      break;
-    case 'HRC-TRN':
-      detCode = 'TRN';
-      service = 'Training';
-      break;
-    case 'VISA':
-      service = 'Business License Obtaining Service';
-      detCode = 'BS/VISA/';
-      break;
-    case 'GS':
-      detCode = 'GS';
-      service = 'GINOJISSHUSEI';
-      break;
-    case 'HT':
-      detCode = 'HT';
-      service = 'Kaigo';
-      break;
-    case 'LC/IN/':
-      detCode = 'LC/IN/';
-      service = 'Language Course';
-      break;
-    case 'OT':
-      detCode = 'OT';
-      service = 'Other';
-      break;
-    case 'ESS':
-      detCode = 'BC/OS/';
-      service = 'Essential Service';
-      break;
-    case 'LOC':
-      detCode = 'WC/JP/';
-      service = 'Recruitment Service';
-      break;
-    case 'EURO':
-      detCode = 'EU';
-      service = '-';
-      break;
-    case 'RYU':
-      detCode = 'RYU';
-      service = 'Education Ryugaku';
-    default:
-  }
-  console.log(detCode);
-  console.log(service);
+// function addService() {
+//   var service = null;
+//   var detCode = null;
+//   var code = SateraitoWF.getFormValue(form, 'invoice_code');
+//   console.log(code);
+//   switch (code) {
+//     case 'EXE':
+//       detCode = 'WC/JP/';
+//       service = 'Recruitment Service';
+//       break;
+//     case 'JP':
+//       detCode = 'WC/JP/';
+//       service = 'Recruitment Service';
+//       break;
+//     case 'KOR':
+//       detCode = 'WC/JP/';
+//       service = 'Recruitment Service';
+//       break;
+//     case 'OS':
+//       detCode = 'WC/OSJP/';
+//       service = 'Recruitment Service';
+//       break;
+//     case 'LG-TR':
+//       detCode = 'TR';
+//       service = 'Translation Service';
+//       break;
+//     case 'LG-INT':
+//       detCode = 'INT';
+//       service = 'Interpretation Service';
+//       break;
+//     case 'ED-JLMC':
+//       detCode = 'JLMC';
+//       service = 'Education';
+//       break;
+//     case 'ED-LC(JP)':
+//       detCode = 'LC/JP/';
+//       service = 'Language Course';
+//       break;
+//     case 'AD':
+//       detCode = 'BC/AD/';
+//       service = 'Alih Daya Service';
+//       break;
+//     case 'ES-RS':
+//       detCode = 'BC/RS/';
+//       service = 'Recruitment Service';
+//       break;
+//     case 'CEBL':
+//       detCode = 'BS/CEBL/';
+//       service = 'Business License Obtaining Service';
+//       break;
+//     case 'HRC':
+//       detCode = 'HRC';
+//       service = 'HR Consulting/ Company Regulation/ Employee Agreement';
+//       break;
+//     case 'HRC-PAY':
+//       detCode = 'PAY';
+//       service = 'Payroll Service';
+//       break;
+//     case 'HRC-PSY':
+//       detCode = 'PSY';
+//       service = 'Assesment Service';
+//       break;
+//     case 'HRC-TRN':
+//       detCode = 'TRN';
+//       service = 'Training';
+//       break;
+//     case 'VISA':
+//       service = 'Business License Obtaining Service';
+//       detCode = 'BS/VISA/';
+//       break;
+//     case 'GS':
+//       detCode = 'GS';
+//       service = 'GINOJISSHUSEI';
+//       break;
+//     case 'HT':
+//       detCode = 'HT';
+//       service = 'Kaigo';
+//       break;
+//     case 'LC/IN/':
+//       detCode = 'LC/IN/';
+//       service = 'Language Course';
+//       break;
+//     case 'OT':
+//       detCode = 'OT';
+//       service = 'Other';
+//       break;
+//     case 'ESS':
+//       detCode = 'BC/OS/';
+//       service = 'Essential Service';
+//       break;
+//     case 'LOC':
+//       detCode = 'WC/JP/';
+//       service = 'Recruitment Service';
+//       break;
+//     case 'EURO':
+//       detCode = 'EU';
+//       service = '-';
+//       break;
+//     case 'RYU':
+//       detCode = 'RYU';
+//       service = 'Education Ryugaku';
+//     default:
+//   }
+//   console.log(detCode);
+//   console.log(service);
 
-  SateraitoWF.setFormValue(form, 'code_invoice', detCode);
-  SateraitoWF.setFormValue(form, 'service_dept', service);
-}
+//   SateraitoWF.setFormValue(form, 'code_invoice', detCode);
+//   SateraitoWF.setFormValue(form, 'service_dept', service);
+// }
 
 function checkButtonPrint(invoice_code) {
   if (invoice_code != '') {
@@ -833,71 +833,6 @@ function cancelRequest(){
     };
 
   SateraitoWF.showNewDocWindowWithRelation(form, 'template-20240327074345aR6fxnVdRpFvQ162', defaultValue, true, true);
-}
-
-function revisionRequest(){
-  var version = "-A"
-  var invnum = SateraitoWF.getFormValue(form, 'generated_code')
-  var revisionnumber = invnum + version
-  var defaultValue = {
-    generated_code: revisionnumber,
-    ex_rate: SateraitoWF.getFormValue(form, 'ex_rate'),
-    To: SateraitoWF.getFormValue(form, 'To'),
-    attn: SateraitoWF.getFormValue(form, 'attn'),
-    company_name: SateraitoWF.getFormValue(form, 'company_name'),
-    description1: SateraitoWF.getFormValue(form, 'description1'),
-    quantity1: SateraitoWF.getFormValue(form, 'quantity1'),
-    unit_price1: SateraitoWF.getFormValue(form, 'unit_price1'),
-    amount1: SateraitoWF.getFormValue(form, 'amount1'),
-    description2: SateraitoWF.getFormValue(form, 'description2'),
-    quantity2: SateraitoWF.getFormValue(form, 'quantity2'),
-    unit_price2: SateraitoWF.getFormValue(form, 'unit_price2'),
-    amount2: SateraitoWF.getFormValue(form, 'amount2'),
-    description3: SateraitoWF.getFormValue(form, 'description3'),
-    quantity3: SateraitoWF.getFormValue(form, 'quantity3'),
-    unit_price3: SateraitoWF.getFormValue(form, 'unit_price3'),
-    amount3: SateraitoWF.getFormValue(form, 'amount3'),
-    description4: SateraitoWF.getFormValue(form, 'description4'),
-    quantity4: SateraitoWF.getFormValue(form, 'quantity4'),
-    unit_price4: SateraitoWF.getFormValue(form, 'unit_price4'),
-    amount4: SateraitoWF.getFormValue(form, 'amount4'),
-    description5: SateraitoWF.getFormValue(form, 'description5'),
-    quantity5: SateraitoWF.getFormValue(form, 'quantity5'),
-    unit_price5: SateraitoWF.getFormValue(form, 'unit_price5'),
-    amount5: SateraitoWF.getFormValue(form, 'amount5'),
-    description6: SateraitoWF.getFormValue(form, 'description6'),
-    quantity6: SateraitoWF.getFormValue(form, 'quantity6'),
-    unit_price6: SateraitoWF.getFormValue(form, 'unit_price6'),
-    amount6: SateraitoWF.getFormValue(form, 'amount6'),
-    description7: SateraitoWF.getFormValue(form, 'description7'),
-    quantity7: SateraitoWF.getFormValue(form, 'quantity7'),
-    unit_price7: SateraitoWF.getFormValue(form, 'unit_price7'),
-    amount7: SateraitoWF.getFormValue(form, 'amount7'),
-    description8: SateraitoWF.getFormValue(form, 'description8'),
-    quantity8: SateraitoWF.getFormValue(form, 'quantity8'),
-    unit_price8: SateraitoWF.getFormValue(form, 'unit_price8'),
-    amount8: SateraitoWF.getFormValue(form, 'amount8'),
-    description9: SateraitoWF.getFormValue(form, 'description9'),
-    quantity9: SateraitoWF.getFormValue(form, 'quantity9'),
-    unit_price9: SateraitoWF.getFormValue(form, 'unit_price9'),
-    amount9: SateraitoWF.getFormValue(form, 'amount9'),
-    description10: SateraitoWF.getFormValue(form, 'description10'),
-    quantity10: SateraitoWF.getFormValue(form, 'quantity10'),
-    unit_price10: SateraitoWF.getFormValue(form, 'unit_price10'),
-    amount10: SateraitoWF.getFormValue(form, 'amount10'),
-    total_vat: SateraitoWF.getFormValue(form, 'total_vat'),
-    witholding_tax: SateraitoWF.getFormValue(form, 'witholding_tax'),
-    invoice_discount: SateraitoWF.getFormValue(form, 'invoice_discount'),
-    remaks: SateraitoWF.getFormValue(form, 'remaks'),
-    payment_due_date: SateraitoWF.getFormValue(form, 'payment_due_date'),
-    grand_total: SateraitoWF.getFormValue(form, 'grand_total'),
-    service_dept: SateraitoWF.getFormValue(form, 'service_dept'),
-    curency: SateraitoWF.getFormValue(form, 'curency'),
-    covert_to: SateraitoWF.getFormValue(form, 'covert_to'),
-    ex_rate: SateraitoWF.getFormValue(form, 'ex_rate')
-  };
-
-  SateraitoWF.showNewDocWindowWithRelation(form, 'template-20241023030729MmxwSaYGyrkagspZ', defaultValue, true, true);
 }
 
 //onChange Invoice Code Function
