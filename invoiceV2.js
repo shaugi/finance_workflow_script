@@ -794,6 +794,8 @@ if (doc_status == '') {
   }else if(doc_status == 'final_approved'){
     SateraitoWF.enableFormElement(form, 'button_cancel');
     $(form).find(':input[name=button_cancel]').css('display', 'block');
+    SateraitoWF.enableFormElement(form, 'button_revision');
+    $(form).find(':input[name=button_revision]').css('display', 'block');
   }
 
 function createInvoiceNumber(id){
