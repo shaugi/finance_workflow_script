@@ -277,7 +277,7 @@ function updateInvoiceNumber(data_key = SateraitoWF.getViewerUserInfo().email){
       if(!is_ok){
             SateraitoWF.alert('Failed to update invoice number. error_code=' +  error_code );
       }else{
-            SateraitoWF.alert('invoice number secured. Next invoice number is = ' + aResultMaster.attribute_1 ) ;
+            SateraitoWF.alert('invoice number secured. Quota remaining = ' + aResultMaster.attribute_1 ) ;
       }
     });
   });
@@ -821,6 +821,32 @@ function createInvoiceNumber(id){
       });
 }
 
+function check_revision_count() {
+  $.ajax({
+    type: 'POST',
+    url: 'https://prod-54.southeastasia.logic.azure.com:443/workflows/4851e060550f415db60b43459d44cb0e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=iRxvskafcamyJ1gvfByV9szQ0hzfEcvpmk1bvRiOIlQ',
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    data: JSON.stringify({ invoice_number: SateraitoWF.getFormValue(form, 'generated_code') }),
+    timeout: 30000,
+    success: function (response) {
+      if (response) {
+        if(response >=1 ){
+          SateraitoWF.disableFormElement(form, 'button_revision');
+        }
+        console.log("Revision has been made with total revision count :", response);
+        // Uncomment if you need to handle specific logic
+        // SateraitoWF.enableFormElement(form, 'button_print_invoice');
+      } else {
+        console.log("Revision Available.");
+      }
+    },
+    error: function (errMsg) {
+      console.error("Error occurred:", errMsg);
+    }
+  });
+}
+
 
 function cancelRequest(){
   var defaultValue = {
@@ -842,6 +868,8 @@ function revisionRequest(){
   var invnum = SateraitoWF.getFormValue(form, 'generated_code')
   var revisionnumber = invnum + version
   var defaultValue = {
+    revision_count: 1,
+    original_invoice_number: invnum,
     generated_code: revisionnumber,
     ex_rate: SateraitoWF.getFormValue(form, 'ex_rate'),
     To: SateraitoWF.getFormValue(form, 'To'),
@@ -898,7 +926,6 @@ function revisionRequest(){
     covert_to: SateraitoWF.getFormValue(form, 'covert_to'),
     ex_rate: SateraitoWF.getFormValue(form, 'ex_rate')
   };
-
   SateraitoWF.showNewDocWindowWithRelation(form, 'template-20241023030729MmxwSaYGyrkagspZ', defaultValue, true, true);
 }
 
@@ -935,3 +962,4 @@ checkButtonPrint(invoice_code);
 SateraitoWF.disableFormElement(form, 'invoice_detail');
 
 calculateTotalAmount();
+check_revision_count();
